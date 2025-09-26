@@ -1,0 +1,8 @@
+# Auto detect text files and perform LF normalization
+*.gitattributes eol=crlf
+*.json eol=lf
+*.asset eol=lf
+*.meta eol=lf
+*.inputactions eol=lf
+*.unity eol=lf
+*.txt eol=lf
