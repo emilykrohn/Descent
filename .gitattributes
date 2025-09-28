@@ -6,3 +6,4 @@
 *.inputactions eol=lf
 *.unity eol=lf
 *.txt eol=lf
+*.prefab eol=lf
