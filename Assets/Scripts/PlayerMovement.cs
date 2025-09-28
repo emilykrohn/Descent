@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Used for physics movement
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -17,8 +18,10 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    // OnMove will be used by the Player Input component when the WASD or Arrow keys are pressed
     public void OnMove(InputAction.CallbackContext context)
     {
+        // Returns a vector with the values -1, 0, or 1 to indicate the direction of movement (x, y)
         Vector2 movement = context.ReadValue<Vector2>();
         rb.linearVelocity = movement * speed;
     }
