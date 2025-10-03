@@ -1,13 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class RoomGeneration : MonoBehaviour
 {
+    [SerializeField] Tilemap roomMap;
+    [SerializeField] List<Tile> tiles = new List<Tile>();
     [SerializeField] int width = 4;
     [SerializeField] int height = 4;
     [SerializeField] float xOrigin = 0;
     [SerializeField] float yOrigin = 0;
     [SerializeField] float magnification = 7f;
     [SerializeField] int tileCount = 4;
+    [SerializeField] int tileSize = 16;
 
     void Start()
     {
@@ -22,14 +27,16 @@ public class RoomGeneration : MonoBehaviour
             // y are the vertical tiles
             for (int y = 0; y < height; y++)
             {
-                Debug.Log(CalucateTile(x, y));
+                int tileIndex = CalculateTile(x, y);
+                Vector3Int position = new Vector3Int(x, y, 0);
+                roomMap.SetTile(position, tiles[tileIndex]);
             }
         }
     }
 
     // Returns the index number of the tile that will be placed at the given x and y values
     // Uses perlin noise to generate which tiles to use
-    int CalucateTile(int x, int y)
+    int CalculateTile(int x, int y)
     {
         // Position where we will get the color from the perlin noise
         float xPosition = (x - xOrigin) / magnification;
