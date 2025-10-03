@@ -684,9 +684,8 @@ MonoBehaviour:
   height: 20
   xOrigin: 0
   yOrigin: 0
-  magnification: 7
+  magnification: 12
   tileCount: 2
-  tileSize: 16
 --- !u!1 &792683955
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,7 +724,7 @@ Transform:
   m_GameObject: {fileID: 792683955}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -10, y: -10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
