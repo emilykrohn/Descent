@@ -12,10 +12,15 @@ public class RoomGeneration : MonoBehaviour
     [SerializeField] float yOrigin = 0;
     [SerializeField] float magnification = 7f;
     [SerializeField] int tileCount = 4;
-    [SerializeField] int tileSize = 16;
+    float xOffset;
+    float yOffset;
 
     void Start()
     {
+        // The offsets make the perlin noise return random values every time this script is run
+        xOffset = Random.Range(0f, 100f);
+        yOffset = Random.Range(0f, 100f);
+
         CreateRoom();
     }
 
@@ -29,6 +34,7 @@ public class RoomGeneration : MonoBehaviour
             {
                 int tileIndex = CalculateTile(x, y);
                 Vector3Int position = new Vector3Int(x, y, 0);
+                // Set the tile to the current position and tile type to the room map
                 roomMap.SetTile(position, tiles[tileIndex]);
             }
         }
@@ -43,7 +49,7 @@ public class RoomGeneration : MonoBehaviour
         float yPosition = (y - yOrigin) / magnification;
 
         // Sample gets a float value from the function that represents how light or dark it is
-        float sample = Mathf.PerlinNoise(xPosition, yPosition);
+        float sample = Mathf.PerlinNoise(xPosition + xOffset, yPosition + yOffset);
 
         // The number returned isn't always a number from 0 to 1 so the clamp function fixes that
         float clamped = Mathf.Clamp(sample, 0.0f, 1.0f);
