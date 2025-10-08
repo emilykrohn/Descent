@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// Requirement #3
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb;
