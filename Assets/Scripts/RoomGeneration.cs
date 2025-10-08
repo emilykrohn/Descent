@@ -38,7 +38,6 @@ public class RoomGeneration : MonoBehaviour
                 if (!createdPlayerSpawn && tileIndex == 0)
                 {
                     playerSpawnPosition = new Vector3(x + 0.5f, y + 0.5f, 0);
-                    Debug.Log(playerSpawnPosition);
                     createdPlayerSpawn = true;
                 }
 
