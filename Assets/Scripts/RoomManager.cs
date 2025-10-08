@@ -14,8 +14,8 @@ public class RoomManager : MonoBehaviour
         playerSpawn = player.GetComponent<PlayerSpawn>();
         roomGeneration = gameObject.GetComponent<RoomGeneration>();
 
-        roomGeneration.CreateRoom();
-        playerSpawn.Spawn();
+        Vector3 playerSpawnPosition = roomGeneration.CreateRoom();
+        playerSpawn.Spawn(playerSpawnPosition);
     }
 
     void Update()
@@ -23,8 +23,8 @@ public class RoomManager : MonoBehaviour
         // Makes sure player spawns in after room is generated so it can avoid spawning in a wall
         if (loadNewRoom)
         {
-            roomGeneration.CreateRoom();
-            playerSpawn.Spawn();
+            Vector3 playerSpawnPosition = roomGeneration.CreateRoom();
+            playerSpawn.Spawn(playerSpawnPosition);
         }
     }
 }

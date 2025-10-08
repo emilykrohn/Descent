@@ -13,12 +13,6 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     // OnMove will be used by the Player Input component when the WASD or Arrow keys are pressed
     public void OnMove(InputAction.CallbackContext context)
     {

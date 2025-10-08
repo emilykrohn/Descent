@@ -10,16 +10,20 @@ public class RoomGeneration : MonoBehaviour
     [SerializeField] List<Tile> tiles = new List<Tile>();
     [SerializeField] int width = 4;
     [SerializeField] int height = 4;
-    [SerializeField] float xOrigin = 0;
-    [SerializeField] float yOrigin = 0;
+    [SerializeField] float xOrigin = 0f;
+    [SerializeField] float yOrigin = 0f;
+
     [SerializeField] float magnification = 7f;
     [SerializeField] int tileCount = 4;
 
-    public void CreateRoom()
+    public Vector3 CreateRoom()
     {
         // The offsets make the perlin noise return random values every time this script is run
         float xOffset = Random.Range(0f, 100f);
         float yOffset = Random.Range(0f, 100f);
+
+        bool createdPlayerSpawn = false;
+        Vector3 playerSpawnPosition = new Vector3();
 
         // x are the horizontal tiles
         for (int x = 0; x < width; x++)
@@ -29,6 +33,15 @@ public class RoomGeneration : MonoBehaviour
             {
                 int tileIndex = CalculateTile(x, y, xOffset, yOffset);
                 Vector3Int position = new Vector3Int(x, y, 0);
+
+                // Gets position where player can spawn on floor and not in a wall
+                if (!createdPlayerSpawn && tileIndex == 0)
+                {
+                    playerSpawnPosition = new Vector3(x + 0.5f, y + 0.5f, 0);
+                    Debug.Log(playerSpawnPosition);
+                    createdPlayerSpawn = true;
+                }
+
                 // Set the tile to the current position and tile type to the room
                 if (tileIndex == 0)
                 {
@@ -38,8 +51,11 @@ public class RoomGeneration : MonoBehaviour
                 {
                     roomWalls.SetTile(position, tiles[tileIndex]);
                 }
+
             }
         }
+
+        return playerSpawnPosition;
     }
 
     // Returns the index number of the tile that will be placed at the given x and y values
