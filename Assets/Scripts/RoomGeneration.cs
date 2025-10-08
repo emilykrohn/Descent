@@ -4,7 +4,8 @@ using UnityEngine.Tilemaps;
 
 public class RoomGeneration : MonoBehaviour
 {
-    [SerializeField] Tilemap roomMap;
+    [SerializeField] Tilemap roomFloor;
+    [SerializeField] Tilemap roomWalls;
     [SerializeField] List<Tile> tiles = new List<Tile>();
     [SerializeField] int width = 4;
     [SerializeField] int height = 4;
@@ -34,8 +35,15 @@ public class RoomGeneration : MonoBehaviour
             {
                 int tileIndex = CalculateTile(x, y);
                 Vector3Int position = new Vector3Int(x, y, 0);
-                // Set the tile to the current position and tile type to the room map
-                roomMap.SetTile(position, tiles[tileIndex]);
+                // Set the tile to the current position and tile type to the room
+                if (tileIndex == 0)
+                {
+                    roomFloor.SetTile(position, tiles[tileIndex]);
+                }
+                else if (tileIndex == 1)
+                {
+                    roomWalls.SetTile(position, tiles[tileIndex]);
+                }
             }
         }
     }
