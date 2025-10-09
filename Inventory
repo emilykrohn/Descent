@@ -1,1 +1,39 @@
-hj
+using UnityEngine;
+using UnityEngine.UI;
+
+public class InventoryUI : MonoBehaviour
+{
+    [Header("UI Elements")]
+    public GameObject inventoryPanel; // Assign the UI square in the inspector
+
+    [Header("Settings")]
+    public KeyCode toggleKey = KeyCode.E;
+
+    private bool isOpen = false;
+
+    void Start()
+    {
+        if (inventoryPanel != null)
+            inventoryPanel.SetActive(false); // Hide by default
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(toggleKey))
+        {
+            ToggleInventory();
+        }
+    }
+
+    void ToggleInventory()
+    {
+        if (inventoryPanel == null) return;
+
+        isOpen = !isOpen;
+        inventoryPanel.SetActive(isOpen);
+
+        // Optional: Pause the game when inventory is open
+        Time.timeScale = isOpen ? 0f : 1f;
+    }
+}
+
