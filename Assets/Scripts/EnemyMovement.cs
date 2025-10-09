@@ -3,13 +3,13 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     public float speed = 2f; // Default speed of Enemy
-    Rigidbody2D rigidbody; // Sets a Rigidbody for physics (Gravity = 0)
+    Rigidbody2D rb; // Sets a Rigidbody for physics (Gravity = 0)
     Transform victim; // Sets target variable whenever Player moves
     Vector2 movDirect; // When enemy moves direction
 
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody2D>(); // Allows for 2D physics to occur
+        rb = GetComponent<Rigidbody2D>(); // Allows for 2D physics to occur
     }
 
     void Start()
@@ -33,9 +33,10 @@ public class EnemyMovement : MonoBehaviour
     {
         if (victim)
         {
-            rigidbody.linearVelocity = new Vector2(movDirect.x, movDirect.y) * speed; // Initializes velocity of Enemy when chasing Player
+            rb.linearVelocity = new Vector2(movDirect.x, movDirect.y) * speed; // Initializes velocity of Enemy when chasing Player
 
         }
     }
 
 }
+
