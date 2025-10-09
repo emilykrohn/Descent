@@ -8,6 +8,7 @@ public class RoomManager : MonoBehaviour
 
     bool loadNewRoom = false;
     RoomGeneration roomGeneration;
+    [SerializeField] EnemySpawner enemySpawner;
 
     void Start()
     {
@@ -16,6 +17,7 @@ public class RoomManager : MonoBehaviour
 
         Vector3 playerSpawnPosition = roomGeneration.CreateRoom();
         playerSpawn.Spawn(playerSpawnPosition);
+        enemySpawner.Spawn();
     }
 
     void Update()
