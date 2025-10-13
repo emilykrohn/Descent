@@ -1,3 +1,4 @@
+//Requirement # 6
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class PlayerAttack : MonoBehaviour
 {
     private GameObject attackArea = default; //the area where the attack happens
 
-    private bool attacking = false; //tracks whether tha player is currently attacking
+    private bool attacking = false; //tracks whether the player is currently attacking
 
     private float timeToAttack = 0.25f; //duration of the attack
     private float timer = 0f; //timer to keep track how long the attack has been active

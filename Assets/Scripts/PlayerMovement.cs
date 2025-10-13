@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// Requirement #3
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb;
@@ -10,12 +11,6 @@ public class PlayerMovement : MonoBehaviour
     {
         // Used for physics movement
         rb = GetComponent<Rigidbody2D>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     // OnMove will be used by the Player Input component when the WASD or Arrow keys are pressed

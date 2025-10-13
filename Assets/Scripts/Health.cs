@@ -21,29 +21,29 @@ public class Health : MonoBehaviour
             // Heal(10);
         }
     }
-    public void Damage(int amount)
+    public void Damage(int amount) //reduces object's health by a given amount
     {
-        if(amount < 0)
+        if(amount < 0) //makes damage value not negative
         {
             throw new System.ArgumentOutOfRangeException("Cannot have negative Damage");
         }
 
-        this.health -= amount;
+        this.health -= amount; //subtracts damage amount from health
 
-        if(health <= 0)
+        if(health <= 0) //if health drops below 0
         {
-            Die();
+            Die(); //calls Die method
         }
     }
 
-    public void Heal(int amount)
+    public void Heal(int amount) //restores object's health by given amount
     {
-        if (amount < 0)
+        if (amount < 0) //not negative
         {
             throw new System.ArgumentOutOfRangeException("Cannot have negative healing");
         }
 
-        bool wouldBeOverMaxHealth = health + amount > MAX_HEALTH;
+        bool wouldBeOverMaxHealth = health + amount > MAX_HEALTH; //checks if exceeding health limit
 
         if (wouldBeOverMaxHealth)
         {
@@ -57,7 +57,7 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Destroyed!");
-        Destroy(gameObject);
+        Debug.Log("Destroyed!"); //prints message
+        Destroy(gameObject); //removes game object from scene
     }
 }
