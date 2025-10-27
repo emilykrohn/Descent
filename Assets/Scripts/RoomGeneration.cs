@@ -70,13 +70,11 @@ public class RoomGeneration : MonoBehaviour
     {
         Queue<Vector3> queue = new Queue<Vector3>();
         HashSet<Vector3> visited = new HashSet<Vector3>();
-        Dictionary<Vector3, Vector3?> from = new Dictionary<Vector3, Vector3?>();
 
         int numberOfTiles = 0; // Count of how many floor tiles are adjacent to the player spawn
 
         queue.Enqueue(start);
         visited.Add(start);
-        from[start] = null;
 
         // Searches through all possible tiles adjacent to player spawn that could be floor tiles
         while (queue.Count > 0)
@@ -91,7 +89,6 @@ public class RoomGeneration : MonoBehaviour
                 {
                     queue.Enqueue(adjacent);
                     visited.Add(adjacent);
-                    from[adjacent] = currentTile;
                     hasAdjacentTile = true;
                 }
             }
