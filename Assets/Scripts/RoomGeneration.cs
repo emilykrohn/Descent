@@ -15,46 +15,124 @@ public class RoomGeneration : MonoBehaviour
 
     [SerializeField] float magnification = 7f;
     [SerializeField] int tileCount = 4;
+    [SerializeField] int minFloorTilesAroundPlayer = 20;
+    bool isValidMap = false;
 
     public Vector3 CreateRoom()
     {
-        // The offsets make the perlin noise return random values every time this script is run
-        float xOffset = Random.Range(0f, 100f);
-        float yOffset = Random.Range(0f, 100f);
-
-        bool createdPlayerSpawn = false;
         Vector3 playerSpawnPosition = new Vector3();
 
-        // x are the horizontal tiles
-        for (int x = 0; x < width; x++)
+        while (!isValidMap)
         {
-            // y are the vertical tiles
-            for (int y = 0; y < height; y++)
+            // The offsets make the perlin noise return random values every time this script is run
+            float xOffset = Random.Range(0f, 100f);
+            float yOffset = Random.Range(0f, 100f);
+
+            bool createdPlayerSpawn = false;
+
+            // x are the horizontal tiles
+            for (int x = 0; x < width; x++)
             {
-                int tileIndex = CalculateTile(x, y, xOffset, yOffset);
-                Vector3Int position = new Vector3Int(x, y, 0);
-
-                // Gets position where player can spawn on floor and not in a wall
-                if (!createdPlayerSpawn && tileIndex == 0)
+                // y are the vertical tiles
+                for (int y = 0; y < height; y++)
                 {
-                    playerSpawnPosition = new Vector3(x + 0.5f, y + 0.5f, 0);
-                    createdPlayerSpawn = true;
-                }
+                    int tileIndex = CalculateTile(x, y, xOffset, yOffset);
+                    Vector3Int position = new Vector3Int(x, y, 0);
 
-                // Set the tile to the current position and tile type to the room
-                if (tileIndex == 0)
-                {
-                    roomFloor.SetTile(position, tiles[tileIndex]);
-                }
-                else if (tileIndex == 1)
-                {
-                    roomWalls.SetTile(position, tiles[tileIndex]);
-                }
+                    // Gets position where player can spawn on floor and not in a wall
+                    if (!createdPlayerSpawn && tileIndex == 0)
+                    {
+                        playerSpawnPosition = new Vector3(x + 0.5f, y + 0.5f, 0);
+                        createdPlayerSpawn = true;
+                    }
 
+                    // Set the tile to the current position and tile type to the room
+                    if (tileIndex == 0)
+                    {
+                        roomFloor.SetTile(position, tiles[tileIndex]);
+                    }
+                    else if (tileIndex == 1)
+                    {
+                        roomWalls.SetTile(position, tiles[tileIndex]);
+                    }
+
+                }
             }
+
+            isValidMap = CalculateIsValidMap(playerSpawnPosition);
         }
 
         return playerSpawnPosition;
+    }
+
+    // Use BFS search to count how many floor tiles are surrounding the player
+    bool CalculateIsValidMap(Vector3 start)
+    {
+        Queue<Vector3> queue = new Queue<Vector3>();
+        HashSet<Vector3> visited = new HashSet<Vector3>();
+        Dictionary<Vector3, Vector3?> from = new Dictionary<Vector3, Vector3?>();
+
+        int numberOfTiles = 0; // Count of how many floor tiles are adjacent to the player spawn
+
+        queue.Enqueue(start);
+        visited.Add(start);
+        from[start] = null;
+
+        // Searches through all possible tiles adjacent to player spawn that could be floor tiles
+        while (queue.Count > 0)
+        {
+            Vector3 currentTile = queue.Dequeue();
+            bool hasAdjacentTile = false;
+
+            // If the adjacent tiles has not already been visited, add it to the visited list
+            foreach (Vector3 adjacent in FindAdjacentTiles(currentTile))
+            {
+                if (!visited.Contains(adjacent))
+                {
+                    queue.Enqueue(adjacent);
+                    visited.Add(adjacent);
+                    from[adjacent] = currentTile;
+                    hasAdjacentTile = true;
+                }
+            }
+
+            if (hasAdjacentTile)
+            {
+                numberOfTiles++;
+            }
+        }
+
+        // If not enough floor tiles are around the player, then the map is not valid
+        return numberOfTiles > minFloorTilesAroundPlayer;
+    }
+    
+    // Finds the adjacent tiles around the current tile being checked and returns all valid adjacent tiles
+    List<Vector3> FindAdjacentTiles(Vector3 current)
+    {
+        List<Vector3> adjacentList = new List<Vector3>();
+
+        // Tiles that are left, right, up, and down the tile
+        Vector3[] directions =
+        {
+            new Vector3(1.5f, 0, 0), // Right
+            new Vector3(-1.5f, 0, 0), // Left
+            new Vector3(0, 1.5f, 0), // Up
+            new Vector3(0, -1.5f, 0) // Down
+        };
+
+        // Checks to see if tiles in the four directions exist
+        foreach (Vector3 direction in directions)
+        {
+            Vector3 adjacentTile = current + direction;
+            // Converts to the tilemap coordinate system
+            Vector3Int tilePosition = roomFloor.WorldToCell(adjacentTile);
+            if (roomFloor.HasTile(tilePosition))
+            {
+                adjacentList.Add(adjacentTile);
+            }
+        }
+
+        return adjacentList;
     }
 
     // Returns the index number of the tile that will be placed at the given x and y values

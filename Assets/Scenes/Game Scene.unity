@@ -548,6 +548,7 @@ MonoBehaviour:
   yOrigin: 0
   magnification: 12
   tileCount: 2
+  minFloorTilesAroundPlayer: 40
 --- !u!1 &792683955
 GameObject:
   m_ObjectHideFlags: 0
