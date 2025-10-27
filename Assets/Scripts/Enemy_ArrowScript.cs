@@ -6,7 +6,9 @@ public class EnemyArrowScript : MonoBehaviour
 
     // Script for Enemy's Arrows
 
-    [SerializeField] private float speed = 8f; // To control speed of the arrow in editor
+    // Serialized Variables - To enable visibility in the Inspector
+    
+    [SerializeField] private float speed = 7f; // To control speed of the arrow in editor
     [SerializeField] private int playerDmg = 10; // The amount of damage Player takes per hit
     [SerializeField] private float lifeArrow = 10f; // The amount of time an arrow's life is within game
 
