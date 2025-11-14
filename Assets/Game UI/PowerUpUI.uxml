@@ -6,7 +6,7 @@
                     <ui:VisualElement name="PowerUpImageOne" style="flex-grow: 1; margin-top: 10%; margin-right: 25%; margin-bottom: 10%; margin-left: 25%; background-image: url(&quot;project://database/Assets/Assets/2D%20Pixel%20Dungeon%20Asset%20Pack/items%20and%20trap_animation/flasks/flasks_1_1.png?fileID=2800000&amp;guid=7f89baaac7f8c4c4cbfa3fbd6ebac404&amp;type=3#flasks_1_1&quot;); background-color: rgb(48, 48, 48);" />
                 </ui:VisualElement>
                 <ui:VisualElement name="LabelVisualElement" style="flex-grow: 1; height: 30%; justify-content: center;">
-                    <ui:Label text="Health" name="PowerUpLabelOne" style="align-items: center; align-self: center; color: rgb(255, 255, 255); font-size: 30px; justify-content: flex-start; align-content: auto;" />
+                    <ui:Button text="Health" name="PowerUpOneButton" style="font-size: 30px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="PowerUpTwo" style="flex-grow: 1;">
@@ -14,7 +14,7 @@
                     <ui:VisualElement name="PowerUpImageTwo" style="flex-grow: 1; margin-top: 10%; margin-right: 25%; margin-bottom: 10%; margin-left: 25%; background-image: url(&quot;project://database/Assets/Assets/2D%20Pixel%20Dungeon%20Asset%20Pack/items%20and%20trap_animation/keys/keys_1_3.png?fileID=2800000&amp;guid=a33f6fd8e98a3f74eb2a4b72409c85cf&amp;type=3#keys_1_3&quot;); background-color: rgb(48, 48, 48);" />
                 </ui:VisualElement>
                 <ui:VisualElement name="LabelVisualElement" style="flex-grow: 1; height: 30%; justify-content: center;">
-                    <ui:Label text="Key" name="PowerUpLabelTwo" style="align-items: center; align-self: center; color: rgb(255, 255, 255); font-size: 30px; justify-content: flex-start; align-content: auto;" />
+                    <ui:Button text="Key" name="PowerUpTwoButton" style="font-size: 30px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="PowerUpThree" style="flex-grow: 1;">
@@ -22,7 +22,7 @@
                     <ui:VisualElement name="PowerUpImageThree" style="flex-grow: 1; margin-top: 10%; margin-right: 25%; margin-bottom: 10%; margin-left: 25%; background-image: url(&quot;project://database/Assets/Assets/2D%20Pixel%20Dungeon%20Asset%20Pack/items%20and%20trap_animation/arrow/Just_arrow.png?fileID=2800000&amp;guid=8e8157ebda92b8f43a302e45c3433b08&amp;type=3#Just_arrow&quot;); background-color: rgb(48, 48, 48);" />
                 </ui:VisualElement>
                 <ui:VisualElement name="LabelVisualElement" style="flex-grow: 1; height: 30%; justify-content: center;">
-                    <ui:Label text="Arrow" name="PowerUpLabelThree" style="align-items: center; align-self: center; color: rgb(255, 255, 255); font-size: 30px; justify-content: flex-start; align-content: auto;" />
+                    <ui:Button text="Weapon" name="PowerUpThreeButton" style="font-size: 30px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
