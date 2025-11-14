@@ -6,11 +6,38 @@ public class PowerUpUI : MonoBehaviour
 {
     UIDocument uiDoc;
     bool isUiOpen = false;
-    void Start()
+
+    private Button buttonOne;
+    private Button buttonTwo;
+    private Button buttonThree;
+
+    void OnEnable()
     {
         // Get the Power Up UI and hide it when the game is first run
         uiDoc = GetComponent<UIDocument>();
         uiDoc.rootVisualElement.style.display = DisplayStyle.None;
+
+        // Find the Buttons from the UIDocument
+        buttonOne = uiDoc.rootVisualElement.Q("PowerUpOneButton") as Button;
+        buttonTwo = uiDoc.rootVisualElement.Q("PowerUpTwoButton") as Button;
+        buttonThree = uiDoc.rootVisualElement.Q("PowerUpThreeButton") as Button;
+
+        // When the buttons are pressed, it calls the ButtonPressed function
+        buttonOne.RegisterCallback<ClickEvent>(ButtonPressed);
+        buttonTwo.RegisterCallback<ClickEvent>(ButtonPressed);
+        buttonThree.RegisterCallback<ClickEvent>(ButtonPressed);
+    }
+
+    void OnDisable()
+    {
+        buttonOne.UnregisterCallback<ClickEvent>(ButtonPressed);
+        buttonTwo.UnregisterCallback<ClickEvent>(ButtonPressed);
+        buttonThree.UnregisterCallback<ClickEvent>(ButtonPressed);
+    }
+
+    private void ButtonPressed(ClickEvent evt)
+    {
+        Debug.Log("Button Pressed");
     }
 
     void Update()
