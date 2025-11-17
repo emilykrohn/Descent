@@ -20,6 +20,9 @@ public class PowerUpUI : MonoBehaviour
     private VisualElement imageOne;
     private VisualElement imageTwo;
     private VisualElement imageThree;
+    
+    List<string> functionOrderList = new List<string>();
+    List<Button> buttons;
 
     private Health health;
     [SerializeField] private int healthAmount = 10;
@@ -52,13 +55,6 @@ public class PowerUpUI : MonoBehaviour
         imageOne = uiDoc.rootVisualElement.Q("PowerUpImageOne");
         imageTwo = uiDoc.rootVisualElement.Q("PowerUpImageTwo");
         imageThree = uiDoc.rootVisualElement.Q("PowerUpImageThree");
-
-        LoadUI();
-
-        // When the buttons are pressed, it calls the ButtonPressed function
-        buttonOne.RegisterCallback<ClickEvent>(HealthPowerUp);
-        buttonTwo.RegisterCallback<ClickEvent>(SpeedPowerUp);
-        buttonThree.RegisterCallback<ClickEvent>(AttackPowerUp);
     }
 
     void OnDisable()
@@ -77,7 +73,7 @@ public class PowerUpUI : MonoBehaviour
             {"Attack", attackPowerUpImage }
         };
 
-        List<Button> buttons = new List<Button> { buttonOne, buttonTwo, buttonThree };
+        buttons = new List<Button> { buttonOne, buttonTwo, buttonThree };
         List<VisualElement> images = new List<VisualElement> { imageOne, imageTwo, imageThree };
 
         // Loop through the buttons and assign them a random power-up from the dictionary
@@ -86,6 +82,19 @@ public class PowerUpUI : MonoBehaviour
             int randomIndex = Random.Range(0, powerUpDictionary.Count);
             string powerUpName = powerUpDictionary.ElementAt(randomIndex).Key;
             buttons[i].text = powerUpName;
+            if (powerUpName == "Health")
+            {
+                buttons[i].RegisterCallback<ClickEvent>(HealthPowerUp);
+            }
+            else if (powerUpName == "Speed")
+            {
+                buttons[i].RegisterCallback<ClickEvent>(SpeedPowerUp);
+            }
+            else if (powerUpName == "Attack")
+            {
+                buttons[i].RegisterCallback<ClickEvent>(AttackPowerUp);
+            }
+            functionOrderList.Add(powerUpName);
             images[i].style.backgroundImage = new StyleBackground(powerUpDictionary[powerUpName]);
             powerUpDictionary.Remove(powerUpName);
         }
@@ -103,7 +112,6 @@ public class PowerUpUI : MonoBehaviour
     {
         Debug.Log("Speed PowerUp");
         playerMovement.SetSpeed(playerMovement.GetSpeed() + speedAmount);
-        Debug.Log("New Speed: " + playerMovement.GetSpeed());
 
         HideUI();
     }
@@ -112,7 +120,6 @@ public class PowerUpUI : MonoBehaviour
     {
         Debug.Log("Attack PowerUp");
         attackArea.SetDamage(attackArea.GetDamage() + attackDamageAmount);
-        Debug.Log("New Attack Damage: " + attackArea.GetDamage());
 
         HideUI();
     }
@@ -120,6 +127,7 @@ public class PowerUpUI : MonoBehaviour
     private void HideUI()
     {
         // Hide UI after button is pressed
+        UnregisterCallbacks();
         uiDoc.rootVisualElement.style.display = DisplayStyle.None;
         isUiOpen = false;
     }
@@ -140,6 +148,16 @@ public class PowerUpUI : MonoBehaviour
                 uiDoc.rootVisualElement.style.display = DisplayStyle.None;
                 isUiOpen = false;
             }
+        }
+    }
+
+    private void UnregisterCallbacks()
+    {
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            buttons[i].UnregisterCallback<ClickEvent>(HealthPowerUp);
+            buttons[i].UnregisterCallback<ClickEvent>(SpeedPowerUp);
+            buttons[i].UnregisterCallback<ClickEvent>(AttackPowerUp);
         }
     }
 }

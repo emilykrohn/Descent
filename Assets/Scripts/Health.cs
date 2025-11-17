@@ -53,8 +53,6 @@ public class Health : MonoBehaviour
         {
             this.health += amount;
         }
-
-        Debug.Log("Current Health: " + health);
     }
 
     private void Die()

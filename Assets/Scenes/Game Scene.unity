@@ -192,7 +192,7 @@ MonoBehaviour:
   attackPowerUpImage: {fileID: 2800000, guid: c91acda49dcc1694ebec5cac2397b6ae, type: 3}
   healthAmount: 10
   speedAmount: 2
-  attackDamageAmount: 1
+  attackDamageAmount: 20
 --- !u!1 &296518863
 GameObject:
   m_ObjectHideFlags: 0
