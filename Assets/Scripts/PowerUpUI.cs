@@ -38,6 +38,10 @@ public class PowerUpUI : MonoBehaviour
     private void ButtonPressed(ClickEvent evt)
     {
         Debug.Log("Button Pressed");
+
+        // Hide UI after button is pressed
+        uiDoc.rootVisualElement.style.display = DisplayStyle.None;
+        isUiOpen = false;
     }
 
     void Update()
