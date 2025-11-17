@@ -17,10 +17,14 @@ public class PowerUpUI : MonoBehaviour
     private PlayerMovement playerMovement;
     [SerializeField] private float speedAmount = 2f;
 
+    private AttackArea attackArea;
+    [SerializeField] private int attackDamageAmount = 1;
+
     void Start()
     {
         health = FindFirstObjectByType<Health>();
         playerMovement = FindFirstObjectByType<PlayerMovement>();
+        attackArea = FindFirstObjectByType<AttackArea>();
     }
 
     void OnEnable()
@@ -37,14 +41,14 @@ public class PowerUpUI : MonoBehaviour
         // When the buttons are pressed, it calls the ButtonPressed function
         buttonOne.RegisterCallback<ClickEvent>(HealthPowerUp);
         buttonTwo.RegisterCallback<ClickEvent>(SpeedPowerUp);
-        buttonThree.RegisterCallback<ClickEvent>(ButtonPressed);
+        buttonThree.RegisterCallback<ClickEvent>(AttackPowerUp);
     }
 
     void OnDisable()
     {
         buttonOne.UnregisterCallback<ClickEvent>(HealthPowerUp);
         buttonTwo.UnregisterCallback<ClickEvent>(SpeedPowerUp);
-        buttonThree.UnregisterCallback<ClickEvent>(ButtonPressed);
+        buttonThree.UnregisterCallback<ClickEvent>(AttackPowerUp);
     }
 
     private void HealthPowerUp(ClickEvent evt)
@@ -60,6 +64,15 @@ public class PowerUpUI : MonoBehaviour
         Debug.Log("Speed PowerUp");
         playerMovement.SetSpeed(playerMovement.GetSpeed() + speedAmount);
         Debug.Log("New Speed: " + playerMovement.GetSpeed());
+
+        HideUI();
+    }
+
+    private void AttackPowerUp(ClickEvent evt)
+    {
+        Debug.Log("Attack PowerUp");
+        attackArea.SetDamage(attackArea.GetDamage() + attackDamageAmount);
+        Debug.Log("New Attack Damage: " + attackArea.GetDamage());
 
         HideUI();
     }

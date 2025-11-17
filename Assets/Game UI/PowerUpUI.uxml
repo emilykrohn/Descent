@@ -19,10 +19,10 @@
             </ui:VisualElement>
             <ui:VisualElement name="PowerUpThree" style="flex-grow: 1;">
                 <ui:VisualElement name="ImageVisualElement" style="flex-grow: 1; height: 70%;">
-                    <ui:VisualElement name="PowerUpImageThree" style="flex-grow: 1; margin-top: 10%; margin-right: 25%; margin-bottom: 10%; margin-left: 25%; background-image: url(&quot;project://database/Assets/Assets/2D%20Pixel%20Dungeon%20Asset%20Pack/items%20and%20trap_animation/arrow/Just_arrow.png?fileID=2800000&amp;guid=8e8157ebda92b8f43a302e45c3433b08&amp;type=3#Just_arrow&quot;); background-color: rgb(48, 48, 48);" />
+                    <ui:VisualElement name="PowerUpImageThree" style="flex-grow: 1; margin-top: 10%; margin-right: 25%; margin-bottom: 10%; margin-left: 25%; background-image: url(&quot;project://database/Assets/Assets/2D%20Pixel%20Dungeon%20Asset%20Pack/items%20and%20trap_animation/flasks/flasks_4_1.png?fileID=2800000&amp;guid=c91acda49dcc1694ebec5cac2397b6ae&amp;type=3#flasks_4_1&quot;); background-color: rgb(48, 48, 48);" />
                 </ui:VisualElement>
                 <ui:VisualElement name="LabelVisualElement" style="flex-grow: 1; height: 30%; justify-content: center;">
-                    <ui:Button text="Weapon" name="PowerUpThreeButton" style="font-size: 30px;" />
+                    <ui:Button text="Increase &#10;Attack" name="PowerUpThreeButton" style="font-size: 30px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

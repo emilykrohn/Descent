@@ -14,4 +14,14 @@ public class AttackArea : MonoBehaviour
             health.Damage(damage); // they will take damage
         }
     }
+
+    public void SetDamage(int newDamage)
+    {
+        damage = newDamage;
+    }
+
+    public int GetDamage()
+    {
+        return damage;
+    }
 }
