@@ -1,9 +1,15 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 // Requirement #17
 public class PowerUpUI : MonoBehaviour
 {
+    [SerializeField] private static Texture2D healthPowerUpImage;
+    [SerializeField] private static Texture2D speedPowerUpImage;
+    [SerializeField] private static Texture2D attackPowerUpImage;
+
     UIDocument uiDoc;
     bool isUiOpen = false;
 
@@ -29,6 +35,13 @@ public class PowerUpUI : MonoBehaviour
 
     void OnEnable()
     {
+        Dictionary<string, Texture2D> powerUpDictionary = new Dictionary<string, Texture2D>
+        {
+            {"Health", healthPowerUpImage },
+            {"Speed", speedPowerUpImage },
+            {"Attack", attackPowerUpImage }
+        };
+
         // Get the Power Up UI and hide it when the game is first run
         uiDoc = GetComponent<UIDocument>();
         uiDoc.rootVisualElement.style.display = DisplayStyle.None;
@@ -37,6 +50,17 @@ public class PowerUpUI : MonoBehaviour
         buttonOne = uiDoc.rootVisualElement.Q("PowerUpOneButton") as Button;
         buttonTwo = uiDoc.rootVisualElement.Q("PowerUpTwoButton") as Button;
         buttonThree = uiDoc.rootVisualElement.Q("PowerUpThreeButton") as Button;
+
+        List<Button> buttons = new List<Button> { buttonOne, buttonTwo, buttonThree };
+        
+        // Loop through the buttons and assign them a random power-up from the dictionary
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            int randomIndex = Random.Range(0, powerUpDictionary.Count);
+            string powerUpName = powerUpDictionary.ElementAt(randomIndex).Key;
+            buttons[i].text = powerUpName;
+            powerUpDictionary.Remove(powerUpName);
+        }
 
         // When the buttons are pressed, it calls the ButtonPressed function
         buttonOne.RegisterCallback<ClickEvent>(HealthPowerUp);
