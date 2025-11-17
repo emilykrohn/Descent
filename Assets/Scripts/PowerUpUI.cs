@@ -1,15 +1,25 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 // Requirement #17
 public class PowerUpUI : MonoBehaviour
 {
+    [SerializeField] private Texture2D healthPowerUpImage;
+    [SerializeField] private Texture2D speedPowerUpImage;
+    [SerializeField] private Texture2D attackPowerUpImage;
+
     UIDocument uiDoc;
     bool isUiOpen = false;
 
     private Button buttonOne;
     private Button buttonTwo;
     private Button buttonThree;
+
+    private VisualElement imageOne;
+    private VisualElement imageTwo;
+    private VisualElement imageThree;
 
     private Health health;
     [SerializeField] private int healthAmount = 10;
@@ -38,6 +48,13 @@ public class PowerUpUI : MonoBehaviour
         buttonTwo = uiDoc.rootVisualElement.Q("PowerUpTwoButton") as Button;
         buttonThree = uiDoc.rootVisualElement.Q("PowerUpThreeButton") as Button;
 
+        // Find the Images from the UIDocument
+        imageOne = uiDoc.rootVisualElement.Q("PowerUpImageOne");
+        imageTwo = uiDoc.rootVisualElement.Q("PowerUpImageTwo");
+        imageThree = uiDoc.rootVisualElement.Q("PowerUpImageThree");
+
+        LoadUI();
+
         // When the buttons are pressed, it calls the ButtonPressed function
         buttonOne.RegisterCallback<ClickEvent>(HealthPowerUp);
         buttonTwo.RegisterCallback<ClickEvent>(SpeedPowerUp);
@@ -49,6 +66,29 @@ public class PowerUpUI : MonoBehaviour
         buttonOne.UnregisterCallback<ClickEvent>(HealthPowerUp);
         buttonTwo.UnregisterCallback<ClickEvent>(SpeedPowerUp);
         buttonThree.UnregisterCallback<ClickEvent>(AttackPowerUp);
+    }
+
+    private void LoadUI()
+    {
+        Dictionary<string, Texture2D> powerUpDictionary = new Dictionary<string, Texture2D>
+        {
+            {"Health", healthPowerUpImage },
+            {"Speed", speedPowerUpImage },
+            {"Attack", attackPowerUpImage }
+        };
+
+        List<Button> buttons = new List<Button> { buttonOne, buttonTwo, buttonThree };
+        List<VisualElement> images = new List<VisualElement> { imageOne, imageTwo, imageThree };
+
+        // Loop through the buttons and assign them a random power-up from the dictionary
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            int randomIndex = Random.Range(0, powerUpDictionary.Count);
+            string powerUpName = powerUpDictionary.ElementAt(randomIndex).Key;
+            buttons[i].text = powerUpName;
+            images[i].style.backgroundImage = new StyleBackground(powerUpDictionary[powerUpName]);
+            powerUpDictionary.Remove(powerUpName);
+        }
     }
 
     private void HealthPowerUp(ClickEvent evt)
@@ -77,13 +117,6 @@ public class PowerUpUI : MonoBehaviour
         HideUI();
     }
 
-    private void ButtonPressed(ClickEvent evt)
-    {
-        Debug.Log("Button Pressed");
-
-        HideUI();
-    }
-
     private void HideUI()
     {
         // Hide UI after button is pressed
@@ -100,6 +133,7 @@ public class PowerUpUI : MonoBehaviour
             {
                 uiDoc.rootVisualElement.style.display = DisplayStyle.Flex;
                 isUiOpen = true;
+                LoadUI();
             }
             else
             {
