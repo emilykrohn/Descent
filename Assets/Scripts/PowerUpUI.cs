@@ -14,9 +14,13 @@ public class PowerUpUI : MonoBehaviour
     private Health health;
     [SerializeField] private int healthAmount = 10;
 
+    private PlayerMovement playerMovement;
+    [SerializeField] private float speedAmount = 2f;
+
     void Start()
     {
         health = FindFirstObjectByType<Health>();
+        playerMovement = FindFirstObjectByType<PlayerMovement>();
     }
 
     void OnEnable()
@@ -32,14 +36,14 @@ public class PowerUpUI : MonoBehaviour
 
         // When the buttons are pressed, it calls the ButtonPressed function
         buttonOne.RegisterCallback<ClickEvent>(HealthPowerUp);
-        buttonTwo.RegisterCallback<ClickEvent>(ButtonPressed);
+        buttonTwo.RegisterCallback<ClickEvent>(SpeedPowerUp);
         buttonThree.RegisterCallback<ClickEvent>(ButtonPressed);
     }
 
     void OnDisable()
     {
         buttonOne.UnregisterCallback<ClickEvent>(HealthPowerUp);
-        buttonTwo.UnregisterCallback<ClickEvent>(ButtonPressed);
+        buttonTwo.UnregisterCallback<ClickEvent>(SpeedPowerUp);
         buttonThree.UnregisterCallback<ClickEvent>(ButtonPressed);
     }
 
@@ -47,6 +51,15 @@ public class PowerUpUI : MonoBehaviour
     {
         Debug.Log("Heal PowerUp");
         health.Heal(healthAmount);
+
+        HideUI();
+    }
+
+    private void SpeedPowerUp(ClickEvent evt)
+    {
+        Debug.Log("Speed PowerUp");
+        playerMovement.SetSpeed(playerMovement.GetSpeed() + speedAmount);
+        Debug.Log("New Speed: " + playerMovement.GetSpeed());
 
         HideUI();
     }

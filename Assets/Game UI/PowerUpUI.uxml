@@ -11,10 +11,10 @@
             </ui:VisualElement>
             <ui:VisualElement name="PowerUpTwo" style="flex-grow: 1;">
                 <ui:VisualElement name="ImageVisualElement" style="flex-grow: 1; height: 70%;">
-                    <ui:VisualElement name="PowerUpImageTwo" style="flex-grow: 1; margin-top: 10%; margin-right: 25%; margin-bottom: 10%; margin-left: 25%; background-image: url(&quot;project://database/Assets/Assets/2D%20Pixel%20Dungeon%20Asset%20Pack/items%20and%20trap_animation/keys/keys_1_3.png?fileID=2800000&amp;guid=a33f6fd8e98a3f74eb2a4b72409c85cf&amp;type=3#keys_1_3&quot;); background-color: rgb(48, 48, 48);" />
+                    <ui:VisualElement name="PowerUpImageTwo" style="flex-grow: 1; margin-top: 10%; margin-right: 25%; margin-bottom: 10%; margin-left: 25%; background-image: url(&quot;project://database/Assets/Assets/2D%20Pixel%20Dungeon%20Asset%20Pack/items%20and%20trap_animation/flasks/flasks_2_1.png?fileID=2800000&amp;guid=2b5d68f2f33eb2641994d034a33a67cb&amp;type=3#flasks_2_1&quot;); background-color: rgb(48, 48, 48);" />
                 </ui:VisualElement>
                 <ui:VisualElement name="LabelVisualElement" style="flex-grow: 1; height: 30%; justify-content: center;">
-                    <ui:Button text="Key" name="PowerUpTwoButton" style="font-size: 30px;" />
+                    <ui:Button text="Speed" name="PowerUpTwoButton" style="font-size: 30px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="PowerUpThree" style="flex-grow: 1;">
