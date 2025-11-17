@@ -6,9 +6,9 @@ using UnityEngine.UIElements;
 // Requirement #17
 public class PowerUpUI : MonoBehaviour
 {
-    [SerializeField] private static Texture2D healthPowerUpImage;
-    [SerializeField] private static Texture2D speedPowerUpImage;
-    [SerializeField] private static Texture2D attackPowerUpImage;
+    [SerializeField] private Texture2D healthPowerUpImage;
+    [SerializeField] private Texture2D speedPowerUpImage;
+    [SerializeField] private Texture2D attackPowerUpImage;
 
     UIDocument uiDoc;
     bool isUiOpen = false;
@@ -16,6 +16,10 @@ public class PowerUpUI : MonoBehaviour
     private Button buttonOne;
     private Button buttonTwo;
     private Button buttonThree;
+
+    private VisualElement imageOne;
+    private VisualElement imageTwo;
+    private VisualElement imageThree;
 
     private Health health;
     [SerializeField] private int healthAmount = 10;
@@ -52,13 +56,20 @@ public class PowerUpUI : MonoBehaviour
         buttonThree = uiDoc.rootVisualElement.Q("PowerUpThreeButton") as Button;
 
         List<Button> buttons = new List<Button> { buttonOne, buttonTwo, buttonThree };
-        
+
+        imageOne = uiDoc.rootVisualElement.Q("PowerUpImageOne");
+        imageTwo = uiDoc.rootVisualElement.Q("PowerUpImageTwo");
+        imageThree = uiDoc.rootVisualElement.Q("PowerUpImageThree");
+
+        List<VisualElement> images = new List<VisualElement> { imageOne, imageTwo, imageThree };
+
         // Loop through the buttons and assign them a random power-up from the dictionary
         for (int i = 0; i < buttons.Count; i++)
         {
             int randomIndex = Random.Range(0, powerUpDictionary.Count);
             string powerUpName = powerUpDictionary.ElementAt(randomIndex).Key;
             buttons[i].text = powerUpName;
+            images[i].style.backgroundImage = new StyleBackground(powerUpDictionary[powerUpName]);
             powerUpDictionary.Remove(powerUpName);
         }
 

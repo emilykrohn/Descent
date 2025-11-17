@@ -187,6 +187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79a7526d62e15254b921a015b6838a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerUpUI
+  healthPowerUpImage: {fileID: 2800000, guid: 7f89baaac7f8c4c4cbfa3fbd6ebac404, type: 3}
+  speedPowerUpImage: {fileID: 2800000, guid: 2b5d68f2f33eb2641994d034a33a67cb, type: 3}
+  attackPowerUpImage: {fileID: 2800000, guid: c91acda49dcc1694ebec5cac2397b6ae, type: 3}
   healthAmount: 10
   speedAmount: 2
   attackDamageAmount: 1
