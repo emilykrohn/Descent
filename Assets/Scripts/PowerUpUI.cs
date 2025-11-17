@@ -11,6 +11,14 @@ public class PowerUpUI : MonoBehaviour
     private Button buttonTwo;
     private Button buttonThree;
 
+    private Health health;
+    [SerializeField] private int healthAmount = 10;
+
+    void Start()
+    {
+        health = FindFirstObjectByType<Health>();
+    }
+
     void OnEnable()
     {
         // Get the Power Up UI and hide it when the game is first run
@@ -23,22 +31,35 @@ public class PowerUpUI : MonoBehaviour
         buttonThree = uiDoc.rootVisualElement.Q("PowerUpThreeButton") as Button;
 
         // When the buttons are pressed, it calls the ButtonPressed function
-        buttonOne.RegisterCallback<ClickEvent>(ButtonPressed);
+        buttonOne.RegisterCallback<ClickEvent>(HealthPowerUp);
         buttonTwo.RegisterCallback<ClickEvent>(ButtonPressed);
         buttonThree.RegisterCallback<ClickEvent>(ButtonPressed);
     }
 
     void OnDisable()
     {
-        buttonOne.UnregisterCallback<ClickEvent>(ButtonPressed);
+        buttonOne.UnregisterCallback<ClickEvent>(HealthPowerUp);
         buttonTwo.UnregisterCallback<ClickEvent>(ButtonPressed);
         buttonThree.UnregisterCallback<ClickEvent>(ButtonPressed);
+    }
+
+    private void HealthPowerUp(ClickEvent evt)
+    {
+        Debug.Log("Heal PowerUp");
+        health.Heal(healthAmount);
+
+        HideUI();
     }
 
     private void ButtonPressed(ClickEvent evt)
     {
         Debug.Log("Button Pressed");
 
+        HideUI();
+    }
+
+    private void HideUI()
+    {
         // Hide UI after button is pressed
         uiDoc.rootVisualElement.style.display = DisplayStyle.None;
         isUiOpen = false;
