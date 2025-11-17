@@ -6,11 +6,89 @@ public class PowerUpUI : MonoBehaviour
 {
     UIDocument uiDoc;
     bool isUiOpen = false;
+
+    private Button buttonOne;
+    private Button buttonTwo;
+    private Button buttonThree;
+
+    private Health health;
+    [SerializeField] private int healthAmount = 10;
+
+    private PlayerMovement playerMovement;
+    [SerializeField] private float speedAmount = 2f;
+
+    private AttackArea attackArea;
+    [SerializeField] private int attackDamageAmount = 1;
+
     void Start()
+    {
+        health = FindFirstObjectByType<Health>();
+        playerMovement = FindFirstObjectByType<PlayerMovement>();
+        attackArea = FindFirstObjectByType<AttackArea>();
+    }
+
+    void OnEnable()
     {
         // Get the Power Up UI and hide it when the game is first run
         uiDoc = GetComponent<UIDocument>();
         uiDoc.rootVisualElement.style.display = DisplayStyle.None;
+
+        // Find the Buttons from the UIDocument
+        buttonOne = uiDoc.rootVisualElement.Q("PowerUpOneButton") as Button;
+        buttonTwo = uiDoc.rootVisualElement.Q("PowerUpTwoButton") as Button;
+        buttonThree = uiDoc.rootVisualElement.Q("PowerUpThreeButton") as Button;
+
+        // When the buttons are pressed, it calls the ButtonPressed function
+        buttonOne.RegisterCallback<ClickEvent>(HealthPowerUp);
+        buttonTwo.RegisterCallback<ClickEvent>(SpeedPowerUp);
+        buttonThree.RegisterCallback<ClickEvent>(AttackPowerUp);
+    }
+
+    void OnDisable()
+    {
+        buttonOne.UnregisterCallback<ClickEvent>(HealthPowerUp);
+        buttonTwo.UnregisterCallback<ClickEvent>(SpeedPowerUp);
+        buttonThree.UnregisterCallback<ClickEvent>(AttackPowerUp);
+    }
+
+    private void HealthPowerUp(ClickEvent evt)
+    {
+        Debug.Log("Heal PowerUp");
+        health.Heal(healthAmount);
+
+        HideUI();
+    }
+
+    private void SpeedPowerUp(ClickEvent evt)
+    {
+        Debug.Log("Speed PowerUp");
+        playerMovement.SetSpeed(playerMovement.GetSpeed() + speedAmount);
+        Debug.Log("New Speed: " + playerMovement.GetSpeed());
+
+        HideUI();
+    }
+
+    private void AttackPowerUp(ClickEvent evt)
+    {
+        Debug.Log("Attack PowerUp");
+        attackArea.SetDamage(attackArea.GetDamage() + attackDamageAmount);
+        Debug.Log("New Attack Damage: " + attackArea.GetDamage());
+
+        HideUI();
+    }
+
+    private void ButtonPressed(ClickEvent evt)
+    {
+        Debug.Log("Button Pressed");
+
+        HideUI();
+    }
+
+    private void HideUI()
+    {
+        // Hide UI after button is pressed
+        uiDoc.rootVisualElement.style.display = DisplayStyle.None;
+        isUiOpen = false;
     }
 
     void Update()

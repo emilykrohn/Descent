@@ -20,4 +20,14 @@ public class PlayerMovement : MonoBehaviour
         Vector2 movement = context.ReadValue<Vector2>();
         rb.linearVelocity = movement * speed;
     }
+
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+
+    public float GetSpeed()
+    {
+        return speed;
+    }
 }
