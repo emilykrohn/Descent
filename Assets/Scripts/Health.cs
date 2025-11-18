@@ -5,16 +5,16 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int health = 100;
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int MAX_HEALTH = 100;
     [SerializeField] WorldSpaceHealthBar healthBar;
 
     private void Start()
     {   
-        health = maxHealth;
+        health = MAX_HEALTH;
         // Initialize the health bar at the start
         if (healthBar != null)
         {
-            healthBar.UpdateHealthBar(health, maxHealth);
+            healthBar.UpdateHealthBar(health, MAX_HEALTH);
         }
     }
 
@@ -43,7 +43,7 @@ public class Health : MonoBehaviour
         // update health bar
         if (healthBar != null)
         {
-            healthBar.UpdateHealthBar(health, maxHealth);
+            healthBar.UpdateHealthBar(health, MAX_HEALTH);
         }
 
         if(health <= 0) //if health drops below 0
@@ -59,11 +59,11 @@ public class Health : MonoBehaviour
             throw new System.ArgumentOutOfRangeException("Cannot have negative healing");
         }
 
-        bool wouldBeOverMaxHealth = health + amount > maxHealth; //checks if exceeding health limit
+        bool wouldBeOverMaxHealth = health + amount > MAX_HEALTH; //checks if exceeding health limit
 
         if (wouldBeOverMaxHealth)
         {
-            this.health = maxHealth;
+            this.health = MAX_HEALTH;
         }
         else
         {
@@ -72,7 +72,7 @@ public class Health : MonoBehaviour
         // update health bar
         if (healthBar != null)
         {
-            healthBar.UpdateHealthBar(health, maxHealth);
+            healthBar.UpdateHealthBar(health, MAX_HEALTH);
         }
     }
 
