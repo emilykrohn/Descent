@@ -399,7 +399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   health: 15
   maxHealth: 15
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 5673654638510217799}
 --- !u!50 &170879589410600267
 Rigidbody2D:
   serializedVersion: 5
