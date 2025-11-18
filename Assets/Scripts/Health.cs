@@ -9,7 +9,8 @@ public class Health : MonoBehaviour
     [SerializeField] WorldSpaceHealthBar healthBar;
 
     private void Start()
-    {
+    {   
+        health = maxHealth;
         // Initialize the health bar at the start
         if (healthBar != null)
         {
