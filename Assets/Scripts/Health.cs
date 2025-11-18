@@ -5,8 +5,18 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int health = 100;
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] WorldSpaceHealthBar healthBar;
 
-    private int MAX_HEALTH = 100;
+    private void Start()
+    {   
+        health = maxHealth;
+        // Initialize the health bar at the start
+        if (healthBar != null)
+        {
+            healthBar.UpdateHealthBar(health, maxHealth);
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -30,6 +40,12 @@ public class Health : MonoBehaviour
 
         this.health -= amount; //subtracts damage amount from health
 
+        // update health bar
+        if (healthBar != null)
+        {
+            healthBar.UpdateHealthBar(health, maxHealth);
+        }
+
         if(health <= 0) //if health drops below 0
         {
             Die(); //calls Die method
@@ -43,15 +59,20 @@ public class Health : MonoBehaviour
             throw new System.ArgumentOutOfRangeException("Cannot have negative healing");
         }
 
-        bool wouldBeOverMaxHealth = health + amount > MAX_HEALTH; //checks if exceeding health limit
+        bool wouldBeOverMaxHealth = health + amount > maxHealth; //checks if exceeding health limit
 
         if (wouldBeOverMaxHealth)
         {
-            this.health = MAX_HEALTH;
+            this.health = maxHealth;
         }
         else
         {
             this.health += amount;
+        }
+        // update health bar
+        if (healthBar != null)
+        {
+            healthBar.UpdateHealthBar(health, maxHealth);
         }
     }
 
