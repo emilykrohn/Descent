@@ -24,6 +24,10 @@ public class RoomGeneration : MonoBehaviour
 
         while (!isValidMap)
         {
+            // If the previous map was not valid, clear all tiles and generate a new map
+            roomFloor.ClearAllTiles();
+            roomWalls.ClearAllTiles();
+
             // The offsets make the perlin noise return random values every time this script is run
             float xOffset = Random.Range(0f, 100f);
             float yOffset = Random.Range(0f, 100f);
@@ -55,7 +59,6 @@ public class RoomGeneration : MonoBehaviour
                     {
                         roomWalls.SetTile(position, tiles[tileIndex]);
                     }
-
                 }
             }
 
