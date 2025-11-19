@@ -25,7 +25,7 @@ public class Enemy_LongRangeAttack : MonoBehaviour
         {
             // In every frame, the distance between the enemy and the user will detect when enemy will shoot
             float distance = Vector2.Distance(transform.position, user.transform.position); 
-            Debug.Log(distance); // In the editor, the distance will be known at all times
+            //Debug.Log(distance); // In the editor, the distance will be known at all times
 
             if (distance < 5) // If player is within a range less than 5, the Enemy will shoot
             {

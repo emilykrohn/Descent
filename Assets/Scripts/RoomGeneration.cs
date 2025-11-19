@@ -40,7 +40,7 @@ public class RoomGeneration : MonoBehaviour
                     Vector3Int position = new Vector3Int(x, y, 0);
 
                     // Gets position where player can spawn on floor and not in a wall
-                    if (!createdPlayerSpawn && tileIndex == 0)
+                    if (!createdPlayerSpawn && tileIndex == 0 && x != 0)
                     {
                         playerSpawnPosition = new Vector3(x + 0.5f, y + 0.5f, 0);
                         createdPlayerSpawn = true;
