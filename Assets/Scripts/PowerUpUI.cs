@@ -33,18 +33,19 @@ public class PowerUpUI : MonoBehaviour
     private PlayerMovement playerMovement;
     [SerializeField] private float speedAmount = 2f;
 
-    private AttackArea attackArea;
-    [SerializeField] private int attackDamageAmount = 1;
+    [SerializeField] private int attackDamageAmountIncrease = 1;
+    private int totalAttackIncrease = 0;
     private BaseLongRangeAttack basicGunAttack;
     private PlayerAttack playerAttack;
     private TriShotAttack triShotAttack;
     private CannonPowerUp cannonPowerUp;
+    private PlayerStats playerStats;
 
     void Start()
     {
+        playerStats = FindFirstObjectByType<PlayerStats>();
         health = FindFirstObjectByType<Health>();
         playerMovement = FindFirstObjectByType<PlayerMovement>();
-        attackArea = FindFirstObjectByType<AttackArea>();
         playerAttack = FindFirstObjectByType<PlayerAttack>();
         basicGunAttack = FindFirstObjectByType<BaseLongRangeAttack>();
         triShotAttack = FindFirstObjectByType<TriShotAttack>();
@@ -131,6 +132,8 @@ public class PowerUpUI : MonoBehaviour
         basicGunAttack.enabled = false;
         triShotAttack.enabled = false;
 
+        playerStats.SetAttack(cannonPowerUp.GetAttackDamage() + totalAttackIncrease);
+
         HideUI();
     }
 
@@ -141,6 +144,8 @@ public class PowerUpUI : MonoBehaviour
         triShotAttack.enabled = false;
         cannonPowerUp.enabled = false;
 
+        playerStats.SetAttack(basicGunAttack.GetAttackDamage() + totalAttackIncrease);
+
         HideUI();
     }
 
@@ -150,6 +155,8 @@ public class PowerUpUI : MonoBehaviour
         playerAttack.enabled = false;
         triShotAttack.enabled = true;
         cannonPowerUp.enabled = false;
+
+        playerStats.SetAttack(triShotAttack.GetAttackDamage() + totalAttackIncrease);
 
         HideUI();
     }
@@ -170,8 +177,9 @@ public class PowerUpUI : MonoBehaviour
 
     private void AttackPowerUp(ClickEvent evt)
     {
-        attackArea.SetDamage(attackArea.GetDamage() + attackDamageAmount);
-
+        playerStats.SetAttack(playerStats.GetAttack() + attackDamageAmountIncrease);
+        totalAttackIncrease += attackDamageAmountIncrease;
+        
         HideUI();
     }
 

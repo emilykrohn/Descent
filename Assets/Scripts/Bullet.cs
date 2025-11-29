@@ -5,8 +5,14 @@ public class Bullet : MonoBehaviour
 {
     float timer = 0f;
     [SerializeField] float cooldown = 2f;
-    [SerializeField] int damage = 3;
-    
+    int damage = 3;
+
+    void Start()
+    {
+        PlayerStats playerStats = FindFirstObjectByType<PlayerStats>();
+        damage = playerStats.GetAttack();
+    }
+
     void Update()
     {
         timer += Time.deltaTime;

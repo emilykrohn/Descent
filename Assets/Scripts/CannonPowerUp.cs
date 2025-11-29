@@ -7,6 +7,7 @@ public class CannonPowerUp : MonoBehaviour
     [SerializeField] float bulletSpeed = 10f;
     float timer = 0f;
     [SerializeField] float cooldown = 0.5f;
+    [SerializeField] int attackDamage = 5;
 
     void Update()
     {
@@ -34,5 +35,10 @@ public class CannonPowerUp : MonoBehaviour
         // Find the angle where the bullet will move towards
         float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
         newBullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+    }
+
+    public int GetAttackDamage()
+    {
+        return attackDamage;
     }
 }

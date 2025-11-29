@@ -7,6 +7,7 @@ public class TriShotAttack : MonoBehaviour
     [SerializeField] float bulletSpeed = 10f;
     float timer = 0f;
     [SerializeField] float cooldown = 0.1f;
+    [SerializeField] int attackDamage = 2;
 
     void Update()
     {
@@ -54,5 +55,10 @@ public class TriShotAttack : MonoBehaviour
         Vector3 offsetDirection2 = new Vector3(Mathf.Cos(angle3), Mathf.Sin(angle3), 0);
         rb3.linearVelocity = offsetDirection2.normalized * bulletSpeed;
         thirdBullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - offsetAngle));
+    }
+
+    public int GetAttackDamage()
+    {
+        return attackDamage;
     }
 }

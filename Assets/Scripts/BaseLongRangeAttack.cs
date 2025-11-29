@@ -7,6 +7,7 @@ public class BaseLongRangeAttack : MonoBehaviour
     [SerializeField] float bulletSpeed = 10f;
     float timer = 0f;
     [SerializeField] float cooldown = 0.2f;
+    [SerializeField] int attackDamage = 3;
 
     void Update()
     {
@@ -33,5 +34,10 @@ public class BaseLongRangeAttack : MonoBehaviour
         // Find the angle where the bullet will move towards
         float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
         newBullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+    }
+
+    public int GetAttackDamage()
+    {
+        return attackDamage;
     }
 }
