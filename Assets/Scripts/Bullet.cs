@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//Requirement # 6
 public class Bullet : MonoBehaviour
 {
     float timer = 0f;
