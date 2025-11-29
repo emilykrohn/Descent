@@ -192,6 +192,7 @@ MonoBehaviour:
   attackPowerUpImage: {fileID: 2800000, guid: c91acda49dcc1694ebec5cac2397b6ae, type: 3}
   basicGunPowerUpImage: {fileID: 2800000, guid: 8cdabb36d429fe04283ee256430e5556, type: 3}
   triShotGunPowerUpImage: {fileID: 2800000, guid: c244e614888380d49bf28549b7f25eed, type: 3}
+  cannonPowerUpImage: {fileID: 2800000, guid: ef4ea86630f98d541950fc89b541333c, type: 3}
   healthAmount: 10
   speedAmount: 2
   attackDamageAmount: 20
@@ -1633,6 +1634,7 @@ GameObject:
   - component: {fileID: 2069699439}
   - component: {fileID: 2069699440}
   - component: {fileID: 2069699441}
+  - component: {fileID: 2069699442}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1997,6 +1999,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriShotAttack
   bullet: {fileID: 4587205202983136652, guid: 990644bb94292ac4b99a4781cf6b8841, type: 3}
   bulletSpeed: 30
+--- !u!114 &2069699442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069699430}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20c4250a8bef6a4f951a180d6f2e3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CannonPowerUp
+  bullet: {fileID: 4587205202983136652, guid: 990644bb94292ac4b99a4781cf6b8841, type: 3}
+  bulletSpeed: 25
+  cooldown: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
