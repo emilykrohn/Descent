@@ -7,9 +7,12 @@ public class AttackArea : MonoBehaviour
     private int damage = 3; // using 3 as an example
 
     private GameObject player;
+    private PlayerStats playerStats;
 
     private void Start()
     {
+        playerStats = FindFirstObjectByType<PlayerStats>();
+        damage = playerStats.GetAttack();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
