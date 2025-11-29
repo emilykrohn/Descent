@@ -51,7 +51,6 @@ public class Health : MonoBehaviour
             Die(); //calls Die method
         }
 
-        Debug.Log("Health: " + health);
     }
 
     public void Heal(int amount) //restores object's health by given amount
@@ -80,7 +79,6 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Destroyed!"); //prints message
         Destroy(gameObject); //removes game object from scene
     }
 }
