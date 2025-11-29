@@ -21,7 +21,6 @@ public class Bullet : MonoBehaviour
         {
             Health health = collider.GetComponent<Health>();
             health.Damage(damage);
-            Debug.Log("Enemy hit by bullet");
             Destroy(gameObject);
         }
     }
