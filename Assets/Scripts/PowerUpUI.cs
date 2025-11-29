@@ -9,6 +9,9 @@ public class PowerUpUI : MonoBehaviour
     [SerializeField] private Texture2D healthPowerUpImage;
     [SerializeField] private Texture2D speedPowerUpImage;
     [SerializeField] private Texture2D attackPowerUpImage;
+    [SerializeField] private Texture2D basicGunPowerUpImage;
+    [SerializeField] private Texture2D triShotGunPowerUpImage;
+    [SerializeField] private Texture2D cannonPowerUpImage;
 
     UIDocument uiDoc;
     bool isUiOpen = false;
@@ -30,14 +33,23 @@ public class PowerUpUI : MonoBehaviour
     private PlayerMovement playerMovement;
     [SerializeField] private float speedAmount = 2f;
 
-    private AttackArea attackArea;
-    [SerializeField] private int attackDamageAmount = 1;
+    [SerializeField] private int attackDamageAmountIncrease = 1;
+    private int totalAttackIncrease = 0;
+    private BaseLongRangeAttack basicGunAttack;
+    private PlayerAttack playerAttack;
+    private TriShotAttack triShotAttack;
+    private CannonPowerUp cannonPowerUp;
+    private PlayerStats playerStats;
 
     void Start()
     {
+        playerStats = FindFirstObjectByType<PlayerStats>();
         health = FindFirstObjectByType<Health>();
         playerMovement = FindFirstObjectByType<PlayerMovement>();
-        attackArea = FindFirstObjectByType<AttackArea>();
+        playerAttack = FindFirstObjectByType<PlayerAttack>();
+        basicGunAttack = FindFirstObjectByType<BaseLongRangeAttack>();
+        triShotAttack = FindFirstObjectByType<TriShotAttack>();
+        cannonPowerUp = FindFirstObjectByType<CannonPowerUp>();
     }
 
     void OnEnable()
@@ -59,9 +71,7 @@ public class PowerUpUI : MonoBehaviour
 
     void OnDisable()
     {
-        buttonOne.UnregisterCallback<ClickEvent>(HealthPowerUp);
-        buttonTwo.UnregisterCallback<ClickEvent>(SpeedPowerUp);
-        buttonThree.UnregisterCallback<ClickEvent>(AttackPowerUp);
+        UnregisterCallbacks();
     }
 
     private void LoadUI()
@@ -70,7 +80,10 @@ public class PowerUpUI : MonoBehaviour
         {
             {"Health", healthPowerUpImage },
             {"Speed", speedPowerUpImage },
-            {"Attack", attackPowerUpImage }
+            {"Attack", attackPowerUpImage },
+            {"Basic Gun", basicGunPowerUpImage },
+            {"Tri-Shot Gun", triShotGunPowerUpImage },
+            {"Cannon", cannonPowerUpImage }
         };
 
         buttons = new List<Button> { buttonOne, buttonTwo, buttonThree };
@@ -94,15 +107,62 @@ public class PowerUpUI : MonoBehaviour
             {
                 buttons[i].RegisterCallback<ClickEvent>(AttackPowerUp);
             }
+            else if (powerUpName == "Basic Gun")
+            {
+                buttons[i].RegisterCallback<ClickEvent>(BasicGunPowerUp);
+            }
+            else if (powerUpName == "Tri-Shot Gun")
+            {
+                buttons[i].RegisterCallback<ClickEvent>(TriShotGunPowerUp);
+            }
+            else if (powerUpName == "Cannon")
+            {
+                buttons[i].RegisterCallback<ClickEvent>(CannonPowerUp);
+            }
             functionOrderList.Add(powerUpName);
             images[i].style.backgroundImage = new StyleBackground(powerUpDictionary[powerUpName]);
             powerUpDictionary.Remove(powerUpName);
         }
     }
 
+    private void CannonPowerUp(ClickEvent evt)
+    {
+        cannonPowerUp.enabled = true;
+        playerAttack.enabled = false;
+        basicGunAttack.enabled = false;
+        triShotAttack.enabled = false;
+
+        playerStats.SetAttack(cannonPowerUp.GetAttackDamage() + totalAttackIncrease);
+
+        HideUI();
+    }
+
+    private void BasicGunPowerUp(ClickEvent evt)
+    {
+        basicGunAttack.enabled = true;
+        playerAttack.enabled = false;
+        triShotAttack.enabled = false;
+        cannonPowerUp.enabled = false;
+
+        playerStats.SetAttack(basicGunAttack.GetAttackDamage() + totalAttackIncrease);
+
+        HideUI();
+    }
+
+    private void TriShotGunPowerUp(ClickEvent evt)
+    {
+        basicGunAttack.enabled = false;
+        playerAttack.enabled = false;
+        triShotAttack.enabled = true;
+        cannonPowerUp.enabled = false;
+
+        playerStats.SetAttack(triShotAttack.GetAttackDamage() + totalAttackIncrease);
+
+        HideUI();
+    }
+
     private void HealthPowerUp(ClickEvent evt)
     {
-        Debug.Log("Heal PowerUp");
         health.Heal(healthAmount);
 
         HideUI();
@@ -110,7 +170,6 @@ public class PowerUpUI : MonoBehaviour
 
     private void SpeedPowerUp(ClickEvent evt)
     {
-        Debug.Log("Speed PowerUp");
         playerMovement.SetSpeed(playerMovement.GetSpeed() + speedAmount);
 
         HideUI();
@@ -118,9 +177,9 @@ public class PowerUpUI : MonoBehaviour
 
     private void AttackPowerUp(ClickEvent evt)
     {
-        Debug.Log("Attack PowerUp");
-        attackArea.SetDamage(attackArea.GetDamage() + attackDamageAmount);
-
+        playerStats.SetAttack(playerStats.GetAttack() + attackDamageAmountIncrease);
+        totalAttackIncrease += attackDamageAmountIncrease;
+        
         HideUI();
     }
 
@@ -158,6 +217,9 @@ public class PowerUpUI : MonoBehaviour
             buttons[i].UnregisterCallback<ClickEvent>(HealthPowerUp);
             buttons[i].UnregisterCallback<ClickEvent>(SpeedPowerUp);
             buttons[i].UnregisterCallback<ClickEvent>(AttackPowerUp);
+            buttons[i].UnregisterCallback<ClickEvent>(BasicGunPowerUp);
+            buttons[i].UnregisterCallback<ClickEvent>(TriShotGunPowerUp);
+            buttons[i].UnregisterCallback<ClickEvent>(CannonPowerUp);
         }
     }
 }
