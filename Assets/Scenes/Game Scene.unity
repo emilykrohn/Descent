@@ -1246,7 +1246,7 @@ GameObject:
   - component: {fileID: 1546738835}
   m_Layer: 0
   m_Name: Attack Area
-  m_TagString: Untagged
+  m_TagString: AttackArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1629,6 +1629,7 @@ GameObject:
   - component: {fileID: 2069699431}
   - component: {fileID: 2069699438}
   - component: {fileID: 2069699439}
+  - component: {fileID: 2069699440}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1965,6 +1966,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e8c7774c0f44ede83772847a4da590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
+--- !u!114 &2069699440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069699430}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 036f4eb247ee4e74c9c7e34f4a234c00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BaseLongRangeAttack
+  bullet: {fileID: 4587205202983136652, guid: 990644bb94292ac4b99a4781cf6b8841, type: 3}
+  bulletSpeed: 30
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

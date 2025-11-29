@@ -34,7 +34,6 @@ public class AttackArea : MonoBehaviour
         {
             Health health = collider.GetComponent<Health>();
             health.Damage(damage); // they will take damage
-            Debug.Log("Enemy hit");
         }
     }
 
