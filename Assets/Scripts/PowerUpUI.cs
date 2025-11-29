@@ -33,12 +33,16 @@ public class PowerUpUI : MonoBehaviour
 
     private AttackArea attackArea;
     [SerializeField] private int attackDamageAmount = 1;
+    private BaseLongRangeAttack basicGunAttack;
+    private PlayerAttack playerAttack;
 
     void Start()
     {
         health = FindFirstObjectByType<Health>();
         playerMovement = FindFirstObjectByType<PlayerMovement>();
         attackArea = FindFirstObjectByType<AttackArea>();
+        playerAttack = FindFirstObjectByType<PlayerAttack>();
+        basicGunAttack = FindFirstObjectByType<BaseLongRangeAttack>();
     }
 
     void OnEnable()
@@ -63,6 +67,7 @@ public class PowerUpUI : MonoBehaviour
         buttonOne.UnregisterCallback<ClickEvent>(HealthPowerUp);
         buttonTwo.UnregisterCallback<ClickEvent>(SpeedPowerUp);
         buttonThree.UnregisterCallback<ClickEvent>(AttackPowerUp);
+        buttonThree.UnregisterCallback<ClickEvent>(BasicGunPowerUp);
     }
 
     private void LoadUI()
@@ -109,6 +114,8 @@ public class PowerUpUI : MonoBehaviour
     private void BasicGunPowerUp(ClickEvent evt)
     {
         Debug.Log("Basic Gun PowerUp");
+        basicGunAttack.enabled = true;
+        playerAttack.enabled = false;
 
         HideUI();
     }
