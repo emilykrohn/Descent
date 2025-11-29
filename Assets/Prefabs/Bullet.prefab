@@ -178,3 +178,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27df7d27566151e4f8c651c64660b01a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
+  cooldown: 2
