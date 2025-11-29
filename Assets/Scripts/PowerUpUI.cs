@@ -9,6 +9,7 @@ public class PowerUpUI : MonoBehaviour
     [SerializeField] private Texture2D healthPowerUpImage;
     [SerializeField] private Texture2D speedPowerUpImage;
     [SerializeField] private Texture2D attackPowerUpImage;
+    [SerializeField] private Texture2D basicGunPowerUpImage;
 
     UIDocument uiDoc;
     bool isUiOpen = false;
@@ -70,7 +71,8 @@ public class PowerUpUI : MonoBehaviour
         {
             {"Health", healthPowerUpImage },
             {"Speed", speedPowerUpImage },
-            {"Attack", attackPowerUpImage }
+            {"Attack", attackPowerUpImage },
+            {"Basic Gun", basicGunPowerUpImage }
         };
 
         buttons = new List<Button> { buttonOne, buttonTwo, buttonThree };
@@ -94,10 +96,21 @@ public class PowerUpUI : MonoBehaviour
             {
                 buttons[i].RegisterCallback<ClickEvent>(AttackPowerUp);
             }
+            else if (powerUpName == "Basic Gun")
+            {
+                buttons[i].RegisterCallback<ClickEvent>(BasicGunPowerUp);
+            }
             functionOrderList.Add(powerUpName);
             images[i].style.backgroundImage = new StyleBackground(powerUpDictionary[powerUpName]);
             powerUpDictionary.Remove(powerUpName);
         }
+    }
+
+    private void BasicGunPowerUp(ClickEvent evt)
+    {
+        Debug.Log("Basic Gun PowerUp");
+
+        HideUI();
     }
 
     private void HealthPowerUp(ClickEvent evt)

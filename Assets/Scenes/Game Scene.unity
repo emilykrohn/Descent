@@ -190,6 +190,7 @@ MonoBehaviour:
   healthPowerUpImage: {fileID: 2800000, guid: 7f89baaac7f8c4c4cbfa3fbd6ebac404, type: 3}
   speedPowerUpImage: {fileID: 2800000, guid: 2b5d68f2f33eb2641994d034a33a67cb, type: 3}
   attackPowerUpImage: {fileID: 2800000, guid: c91acda49dcc1694ebec5cac2397b6ae, type: 3}
+  basicGunPowerUpImage: {fileID: 2800000, guid: 8cdabb36d429fe04283ee256430e5556, type: 3}
   healthAmount: 10
   speedAmount: 2
   attackDamageAmount: 20
