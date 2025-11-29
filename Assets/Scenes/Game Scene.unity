@@ -1979,7 +1979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseLongRangeAttack
   bullet: {fileID: 4587205202983136652, guid: 990644bb94292ac4b99a4781cf6b8841, type: 3}
-  bulletSpeed: 10
+  bulletSpeed: 30
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
