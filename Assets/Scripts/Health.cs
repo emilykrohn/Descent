@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
     [SerializeField] WorldSpaceHealthBar healthBar;
     [SerializeField] HealthBar playerHealthBar;
+    [SerializeField] GameObject xp;
 
     private void Start()
     {   
@@ -85,6 +86,10 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
+        if (gameObject.tag == "Enemy")
+        {
+            Instantiate(xp, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject); //removes game object from scene
     }
 }

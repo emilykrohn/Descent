@@ -10,6 +10,7 @@ public class XpBar : MonoBehaviour
     void Start()
     {
         currXp = 0;
+        maxXp = FindFirstObjectByType<PlayerStats>().GetMaxXP();
     }
 
     public void UpdateXp(float amount)

@@ -400,6 +400,8 @@ MonoBehaviour:
   health: 15
   maxHealth: 15
   healthBar: {fileID: 5673654638510217799}
+  playerHealthBar: {fileID: 0}
+  xp: {fileID: 8826363980584706021, guid: 4a38dc74bda74064b8b3d74b18cfb37c, type: 3}
 --- !u!50 &170879589410600267
 Rigidbody2D:
   serializedVersion: 5
