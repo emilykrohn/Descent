@@ -24,6 +24,8 @@ public class XpBar : MonoBehaviour
             currXp -= maxXp;
             currLevel++;
             xpText.text = "XP Level: " + currLevel;
+            PowerUpUI powerUpUI = FindFirstObjectByType<PowerUpUI>();
+            powerUpUI.OpenUI();
         }
         float newFillAmount = currXp / maxXp;
         xpBarFill.fillAmount = newFillAmount;

@@ -184,24 +184,17 @@ public class PowerUpUI : MonoBehaviour
         UnregisterCallbacks();
         uiDoc.rootVisualElement.style.display = DisplayStyle.None;
         isUiOpen = false;
+        Time.timeScale = 1f;
     }
 
-    void Update()
+    public void OpenUI()
     {
-        // When the user presses the Q button, the Power Up UI will be hidden if it was open and vice versa
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (!isUiOpen)
         {
-            if (!isUiOpen)
-            {
-                uiDoc.rootVisualElement.style.display = DisplayStyle.Flex;
-                isUiOpen = true;
-                LoadUI();
-            }
-            else
-            {
-                uiDoc.rootVisualElement.style.display = DisplayStyle.None;
-                isUiOpen = false;
-            }
+            uiDoc.rootVisualElement.style.display = DisplayStyle.Flex;
+            isUiOpen = true;
+            Time.timeScale = 0f;
+            LoadUI();
         }
     }
 
