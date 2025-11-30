@@ -28,6 +28,7 @@ public class XpBar : MonoBehaviour
             currXp -= maxXp;
             playerStats.SetXP(currXp);
             currLevel++;
+            playerStats.SetCurrentLevel(currLevel);
             // Update the xp text
             xpText.text = "XP Level: " + currLevel;
             PowerUpUI powerUpUI = FindFirstObjectByType<PowerUpUI>();

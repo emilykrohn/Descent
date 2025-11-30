@@ -2,11 +2,22 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    int health = 100;
     int attack = 3;
     int xp = 0;
     int maxXp = 100;
+    int level = 0;
     int currentEnemiesDefeated = 0;
     int currentFloorNumber = 1;
+
+    public int GetHealth()
+    {
+        return health;
+    }
+    public void SetHealth(int newHealth)
+    {
+        health = newHealth;
+    }
 
     public int GetAttack()
     {
@@ -33,6 +44,14 @@ public class PlayerStats : MonoBehaviour
     public void SetMaxXP(int newMaxXP)
     {
         maxXp = newMaxXP;
+    }
+    public int GetCurrentLevel()
+    {
+        return level;
+    }
+    public void SetCurrentLevel(int newLevel)
+    {
+        level = newLevel;
     }
 
     public int GetCurrentEnemiesDefeated()

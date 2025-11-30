@@ -3,12 +3,22 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerStatsSave", menuName = "Scriptable Objects/PlayerStatsSave")]
 public class PlayerStatsSave : ScriptableObject
 {
+    [SerializeField] private int health = 100;
     [SerializeField] private int attack = 3;
     [SerializeField] private int xp = 0;
     [SerializeField] private int maxXp = 100;
+    [SerializeField] private int level = 0;
     [SerializeField] private int currentEnemiesDefeated = 0;
     [SerializeField] private int currentFloorNumber = 1;
 
+    public int GetHealth()
+    {
+        return health;
+    }
+    public void SetHealth(int newHealth)
+    {
+        health = newHealth;
+    }
     public int GetAttack()
     {
         return attack;
@@ -32,6 +42,14 @@ public class PlayerStatsSave : ScriptableObject
     public void SetMaxXP(int newMaxXP)
     {
         maxXp = newMaxXP;
+    }
+    public int GetLevel()
+    {
+        return level;
+    }
+    public void SetLevel(int newLevel)
+    {
+        level = newLevel;
     }
     public int GetCurrentEnemiesDefeated()
     {

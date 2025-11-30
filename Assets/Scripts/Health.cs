@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
     [SerializeField] WorldSpaceHealthBar healthBar;
     [SerializeField] HealthBar playerHealthBar;
     [SerializeField] GameObject xp;
+    PlayerStats playerStats;
 
     private void Start()
     {
@@ -51,6 +52,8 @@ public class Health : MonoBehaviour
         if (playerHealthBar != null)
         {
             playerHealthBar.UpdateHealth(-amount);
+            playerStats = FindFirstObjectByType<PlayerStats>();
+            playerStats.SetHealth(health);
         }
 
         if(health <= 0) //if health drops below 0
