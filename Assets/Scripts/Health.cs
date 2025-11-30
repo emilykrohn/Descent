@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
     [SerializeField] private int health = 100;
     [SerializeField] private int maxHealth = 100;
     [SerializeField] WorldSpaceHealthBar healthBar;
+    [SerializeField] HealthBar playerHealthBar;
 
     private void Start()
     {   
@@ -44,6 +45,11 @@ public class Health : MonoBehaviour
         if (healthBar != null)
         {
             healthBar.UpdateHealthBar(health, maxHealth);
+        }
+
+        if (playerHealthBar != null)
+        {
+            playerHealthBar.UpdateHealth(-amount);
         }
 
         if(health <= 0) //if health drops below 0

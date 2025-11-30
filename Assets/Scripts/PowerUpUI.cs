@@ -69,11 +69,6 @@ public class PowerUpUI : MonoBehaviour
         imageThree = uiDoc.rootVisualElement.Q("PowerUpImageThree");
     }
 
-    void OnDisable()
-    {
-        UnregisterCallbacks();
-    }
-
     private void LoadUI()
     {
         Dictionary<string, Texture2D> powerUpDictionary = new Dictionary<string, Texture2D>
