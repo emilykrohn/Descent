@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Game%20UI/PauseMenu.uss?fileID=7433441132597879392&amp;guid=5d32dad1a7515ce4bbf33f7215186302&amp;type=3#PauseMenu" />
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(184, 184, 184, 0.48); justify-content: center;">
+        <ui:Label text="Pause Menu" style="-unity-text-align: upper-center; font-size: 40px; margin-bottom: 20px;" />
+        <ui:Button text="Resume" class="button" style="-unity-text-align: middle-center; align-self: center; align-content: auto; justify-content: center; align-items: center;" />
+        <ui:Button text="Restart" class="button" />
+        <ui:Button text="Main Menu" class="button" />
+    </ui:VisualElement>
+</ui:UXML>

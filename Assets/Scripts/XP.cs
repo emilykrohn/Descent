@@ -17,8 +17,10 @@ public class XP : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        // When the player triggers the xp, increase their xp and update the xp bar
         if (collision.gameObject.tag == "Player")
         {
+            // Increase the player's xp
             PlayerStats playerStats = collision.GetComponent<PlayerStats>();
             playerStats.SetXP(playerStats.GetXP() + xp);
             xpBar.UpdateXp(playerStats.GetXP());

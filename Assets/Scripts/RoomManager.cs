@@ -19,6 +19,7 @@ public class RoomManager : MonoBehaviour
 
     void Update()
     {
+        // Load new room and update floor number
         if (loadNewRoom)
         {
             PlayerStats playerStats = FindFirstObjectByType<PlayerStats>();

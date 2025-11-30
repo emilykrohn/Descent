@@ -71,6 +71,7 @@ public class PowerUpUI : MonoBehaviour
 
     private void LoadUI()
     {
+        // dictionary of power ups and their images
         Dictionary<string, Texture2D> powerUpDictionary = new Dictionary<string, Texture2D>
         {
             {"Health", healthPowerUpImage },
@@ -81,6 +82,7 @@ public class PowerUpUI : MonoBehaviour
             {"Cannon", cannonPowerUpImage }
         };
 
+        // Create lists for buttons and images that will be used for loops
         buttons = new List<Button> { buttonOne, buttonTwo, buttonThree };
         List<VisualElement> images = new List<VisualElement> { imageOne, imageTwo, imageThree };
 
