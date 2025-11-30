@@ -23,7 +23,7 @@ public class XP : MonoBehaviour
             // Increase the player's xp
             PlayerStats playerStats = collision.GetComponent<PlayerStats>();
             playerStats.SetXP(playerStats.GetXP() + xp);
-            xpBar.UpdateXp(playerStats.GetXP());
+            xpBar.UpdateXp(xp);
             Destroy(gameObject);
         }
     }

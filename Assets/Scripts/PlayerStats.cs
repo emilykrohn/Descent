@@ -13,7 +13,6 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
-        playerStatsSave = FindFirstObjectByType<PlayerStatsSave>();
         playerStatsSave.SetHealth(health);
         playerStatsSave.SetAttack(attack);
         playerStatsSave.SetXP(xp);
