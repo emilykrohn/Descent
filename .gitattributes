@@ -7,3 +7,8 @@
 *.unity eol=lf
 *.txt eol=lf
 *.prefab eol=lf
+*.mat eol=lf
+*.hlsl eol=lf
+*.shader eol=lf
+*.shadergraph eol=lf
+*.cginc eol=lf
