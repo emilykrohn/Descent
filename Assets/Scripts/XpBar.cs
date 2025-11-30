@@ -21,6 +21,7 @@ public class XpBar : MonoBehaviour
     public void UpdateXp(int amount)
     {
         currXp += amount;
+        playerStats.SetXP(currXp);
         // If the current xp is greater than the max xp, increase the players level and open the power up UI
         if (currXp > maxXp)
         {
@@ -28,13 +29,14 @@ public class XpBar : MonoBehaviour
             currXp -= maxXp;
             playerStats.SetXP(currXp);
             currLevel++;
+            playerStats.SetCurrentLevel(currLevel);
             // Update the xp text
             xpText.text = "XP Level: " + currLevel;
             PowerUpUI powerUpUI = FindFirstObjectByType<PowerUpUI>();
             powerUpUI.OpenUI();
         }
         // Update the fill amount of the xp bar
-        float newFillAmount = currXp / maxXp;
+        float newFillAmount = (float)currXp / maxXp;
         xpBarFill.fillAmount = newFillAmount;
     }
 }

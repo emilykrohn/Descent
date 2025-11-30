@@ -1,26 +1,18 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+[CreateAssetMenu(fileName = "PlayerStatsSave", menuName = "Scriptable Objects/PlayerStatsSave")]
+public class PlayerStatsSave : ScriptableObject
 {
-    int health = 100;
-    int attack = 3;
-    int xp = 0;
-    int maxXp = 100;
-    int level = 0;
-    int currentEnemiesDefeated = 0;
-    int currentFloorNumber = 1;
-    [SerializeField] private PlayerStatsSave playerStatsSave;
+    [SerializeField] private int health = 100;
+    [SerializeField] private int attack = 3;
+    [SerializeField] private int xp = 0;
+    [SerializeField] private int maxXp = 100;
+    [SerializeField] private int level = 0;
+    [SerializeField] private int currentEnemiesDefeated = 0;
+    [SerializeField] private int currentFloorNumber = 1;
 
-    void Start()
-    {
-        playerStatsSave.SetHealth(health);
-        playerStatsSave.SetAttack(attack);
-        playerStatsSave.SetXP(xp);
-        playerStatsSave.SetMaxXP(maxXp);
-        playerStatsSave.SetLevel(level);
-        playerStatsSave.SetCurrentEnemiesDefeated(currentEnemiesDefeated);
-        playerStatsSave.SetCurrentFloorNumber(currentFloorNumber);
-    }
+    
 
     public int GetHealth()
     {
@@ -30,7 +22,6 @@ public class PlayerStats : MonoBehaviour
     {
         health = newHealth;
     }
-
     public int GetAttack()
     {
         return attack;
@@ -39,7 +30,6 @@ public class PlayerStats : MonoBehaviour
     {
         attack = newAttack;
     }
-
     public int GetXP()
     {
         return xp;
@@ -48,7 +38,6 @@ public class PlayerStats : MonoBehaviour
     {
         xp = newXP;
     }
-
     public int GetMaxXP()
     {
         return maxXp;
@@ -57,15 +46,14 @@ public class PlayerStats : MonoBehaviour
     {
         maxXp = newMaxXP;
     }
-    public int GetCurrentLevel()
+    public int GetLevel()
     {
         return level;
     }
-    public void SetCurrentLevel(int newLevel)
+    public void SetLevel(int newLevel)
     {
         level = newLevel;
     }
-
     public int GetCurrentEnemiesDefeated()
     {
         return currentEnemiesDefeated;
@@ -74,7 +62,6 @@ public class PlayerStats : MonoBehaviour
     {
         currentEnemiesDefeated = newCurrentEnemiesDefeated;
     }
-
     public int GetCurrentFloorNumber()
     {
         return currentFloorNumber;
