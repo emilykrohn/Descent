@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerStatsSave", menuName = "Scriptable Objects/PlayerStatsSave")]
@@ -10,6 +11,8 @@ public class PlayerStatsSave : ScriptableObject
     [SerializeField] private int level = 0;
     [SerializeField] private int currentEnemiesDefeated = 0;
     [SerializeField] private int currentFloorNumber = 1;
+
+    
 
     public int GetHealth()
     {

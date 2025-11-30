@@ -94,6 +94,7 @@ public class Health : MonoBehaviour
             PlayerStats playerStats = FindFirstObjectByType<PlayerStats>();
             EnemySpawner enemySpawner = FindFirstObjectByType<EnemySpawner>();
             playerStats.SetCurrentEnemiesDefeated(playerStats.GetCurrentEnemiesDefeated() + 1);
+            Debug.Log("Enemies defeated: " + playerStats.GetCurrentEnemiesDefeated());
             if (playerStats.GetCurrentEnemiesDefeated() == enemySpawner.GetTotalEnemiesSpawned())
             {
                 playerStats.SetCurrentEnemiesDefeated(0);

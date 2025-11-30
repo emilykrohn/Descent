@@ -9,6 +9,19 @@ public class PlayerStats : MonoBehaviour
     int level = 0;
     int currentEnemiesDefeated = 0;
     int currentFloorNumber = 1;
+    [SerializeField] private PlayerStatsSave playerStatsSave;
+
+    void Start()
+    {
+        playerStatsSave = FindFirstObjectByType<PlayerStatsSave>();
+        playerStatsSave.SetHealth(health);
+        playerStatsSave.SetAttack(attack);
+        playerStatsSave.SetXP(xp);
+        playerStatsSave.SetMaxXP(maxXp);
+        playerStatsSave.SetLevel(level);
+        playerStatsSave.SetCurrentEnemiesDefeated(currentEnemiesDefeated);
+        playerStatsSave.SetCurrentFloorNumber(currentFloorNumber);
+    }
 
     public int GetHealth()
     {
