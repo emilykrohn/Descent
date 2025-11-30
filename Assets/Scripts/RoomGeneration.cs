@@ -64,6 +64,7 @@ public class RoomGeneration : MonoBehaviour
 
             isValidMap = CalculateIsValidMap(playerSpawnPosition);
         }
+        isValidMap = false; // Reset for next room generation
 
         return playerSpawnPosition;
     }

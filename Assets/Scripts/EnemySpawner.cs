@@ -34,5 +34,12 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
         }
+        currentEnemiesSpawned = 0;
+        spawnedLocationList.Clear();
+    }
+
+    public int GetTotalEnemiesSpawned()
+    {
+        return totalEnemiesSpawned;
     }
 }

@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
     [SerializeField] GameObject xp;
 
     private void Start()
-    {   
+    {
         health = maxHealth;
         // Initialize the health bar at the start
         if (healthBar != null)
@@ -88,6 +88,16 @@ public class Health : MonoBehaviour
     {
         if (gameObject.tag == "Enemy")
         {
+            PlayerStats playerStats = FindFirstObjectByType<PlayerStats>();
+            EnemySpawner enemySpawner = FindFirstObjectByType<EnemySpawner>();
+            playerStats.SetCurrentEnemiesDefeated(playerStats.GetCurrentEnemiesDefeated() + 1);
+            if (playerStats.GetCurrentEnemiesDefeated() == enemySpawner.GetTotalEnemiesSpawned())
+            {
+                playerStats.SetCurrentEnemiesDefeated(0);
+                playerStats.SetCurrentFloorNumber(playerStats.GetCurrentFloorNumber() + 1);
+                RoomManager roomManager = FindFirstObjectByType<RoomManager>();
+                roomManager.LoadNewRoom();
+            }
             Instantiate(xp, transform.position, Quaternion.identity);
         }
         Destroy(gameObject); //removes game object from scene
