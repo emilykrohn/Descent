@@ -6,7 +6,7 @@ public class PlayerStats : MonoBehaviour
     int xp = 0;
     int maxXp = 100;
     int currentEnemiesDefeated = 0;
-    int currentFloorNumber = 0;
+    int currentFloorNumber = 1;
 
     public int GetAttack()
     {
