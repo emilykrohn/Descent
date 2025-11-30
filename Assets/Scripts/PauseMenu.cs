@@ -31,7 +31,8 @@ public class PauseMenu : MonoBehaviour
 
     private void SaveGame(ClickEvent evt)
     {
-        Debug.Log("Game Saved!");
+        SaveGame saveGame = FindFirstObjectByType<SaveGame>();
+        saveGame.Save();
         CloseUI();
     }
 
