@@ -11,12 +11,22 @@ public class PlayerMovement : MonoBehaviour
 
     private SpriteRenderer spriterenderer; // allows for sprite to flip
     
+    public PlayerAttack player_Attacker; // Connects PlayerAttack to PlayerMovement
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // Used for physics movement
         rb = GetComponent<Rigidbody2D>();
         spriterenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void Update()
+    {
+        if(Input.GetButtonDown("Attack"))
+        {
+            player_Attacker.Attack();
+        }
     }
 
     // OnMove will be used by the Player Input component when the WASD or Arrow keys are pressed

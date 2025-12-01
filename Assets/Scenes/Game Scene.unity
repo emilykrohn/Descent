@@ -1067,7 +1067,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.229222, y: 6.0011897, z: -10}
+  m_LocalPosition: {x: 10.351628, y: 6.0011897, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3502,6 +3502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   speed: 5
+  player_Attacker: {fileID: 2069699439}
 --- !u!50 &2069699434
 Rigidbody2D:
   serializedVersion: 5
@@ -3740,7 +3741,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f92fdb66d2df9cc46a9509eefa7df78a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  playerStatsSave: {fileID: 11400000, guid: bf75d60d1fd2a804eb7a5737b2fd81ea, type: 2}
 --- !u!95 &2069699444
 Animator:
   serializedVersion: 7
