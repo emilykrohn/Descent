@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 340257798}
   - component: {fileID: 340257797}
   m_Layer: 5
-  m_Name: Descent title
+  m_Name: ControlsTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
