@@ -22,10 +22,11 @@ public class XpBar : MonoBehaviour
             maxXp = playerStats.GetMaxXP();
         }
 
-        if (xpText != null && playerStats != null)
+        if (playerStats != null)
         {
             currLevel = playerStats.GetCurrentLevel();
-            xpText.text = "XP Level: " + currLevel;
+            currXp = playerStats.GetXP();
+            SetXp(currXp);
         }
     }
 
