@@ -60,15 +60,20 @@ public class Health : MonoBehaviour
             {
                 playerStats.SetHealth(health);
             }
+            if(health <= 0 && !isDead) //if health drops below 0
+            {
+                isDead = true;
+                gameManager.gameOver();
+                Die(); //calls Die method
+            }
         }
-
-        if(health <= 0 && !isDead) //if health drops below 0
+        else
         {
-            isDead = true;
-            gameManager.gameOver();
-            Die(); //calls Die method
+            if (health <= 0)
+            {
+                Die();
+            }
         }
-
     }
 
     public void Heal(int amount) //restores object's health by given amount
