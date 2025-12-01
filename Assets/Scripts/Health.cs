@@ -104,9 +104,6 @@ public class Health : MonoBehaviour
                     if (playerStats.GetCurrentEnemiesDefeated() == enemySpawner.GetTotalEnemiesSpawned())
                     {
                         playerStats.SetCurrentEnemiesDefeated(0);
-                        playerStats.SetCurrentFloorNumber(playerStats.GetCurrentFloorNumber() + 1);
-                        RoomManager roomManager = FindFirstObjectByType<RoomManager>();
-                        roomManager.LoadNewRoom();
                     }
                 }
             }

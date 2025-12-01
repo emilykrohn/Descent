@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField] float speed = 5f;
 
-    bool facingRight = true; // Facing right is true
+    //bool facingRight = true; // Facing right is true
 
     private SpriteRenderer spriterenderer; // allows for sprite to flip
     

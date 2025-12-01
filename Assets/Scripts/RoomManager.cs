@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 // Requirement #5
 public class RoomManager : MonoBehaviour
@@ -7,7 +8,6 @@ public class RoomManager : MonoBehaviour
     [SerializeField] GameObject player;
     PlayerSpawn playerSpawn;
 
-    bool loadNewRoom = true;
     [SerializeField] RoomGeneration roomGeneration;
     [SerializeField] EnemySpawner enemySpawner;
     [SerializeField] TextMeshProUGUI floorNumberText;
@@ -22,22 +22,18 @@ public class RoomManager : MonoBehaviour
 
     void Update()
     {
+        EnemyMovement enemyMovement = FindFirstObjectByType<EnemyMovement>();
         // Load new room and update floor number
-        if (loadNewRoom)
+        if (enemyMovement == null)
         {
             PlayerStats playerStats = FindFirstObjectByType<PlayerStats>();
             if (playerStats != null && floorNumberText != null)
             {
+                playerStats.SetCurrentFloorNumber(playerStats.GetCurrentFloorNumber() + 1);
                 floorNumberText.text = "Floor: " + playerStats.GetCurrentFloorNumber();
             }
             StartNewRoom();
-            loadNewRoom = false;
         }
-    }
-
-    public void LoadNewRoom()
-    {
-        loadNewRoom = true;
     }
 
     void StartNewRoom()
