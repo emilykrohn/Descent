@@ -36,8 +36,11 @@ public class XP : MonoBehaviour
 
     void Update()
     {
-        // Move towards the player
-        Vector3 direction = (player.transform.position - transform.position).normalized;
-        rb.linearVelocity = new Vector2(direction.x, direction.y) * speed;
+        if (player == null)
+        {
+            // Move towards the player
+            Vector3 direction = (player.transform.position - transform.position).normalized;
+            rb.linearVelocity = new Vector2(direction.x, direction.y) * speed;
+        }
     }
 }

@@ -8,11 +8,24 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject enemy;
     [SerializeField] Tilemap floorTilemap;
     [SerializeField] int totalEnemiesSpawned = 5;
+    [SerializeField]int increaseEnemyCount = 2;
     int currentEnemiesSpawned = 0;
     List<Vector3> spawnedLocationList = new List<Vector3>();
+    private PlayerStats playerStats;
+
+    void Start()
+    {
+        playerStats = FindFirstObjectByType<PlayerStats>();
+    }
 
     public void Spawn()
     {
+        // Increase enemy count every few floors but won't spawn more than 20 enemies
+        if (playerStats != null && totalEnemiesSpawned <= 20 && playerStats.GetCurrentFloorNumber() % 3 == 0)
+        {
+            totalEnemiesSpawned += increaseEnemyCount;
+        }
+
         BoundsInt bounds = floorTilemap.cellBounds;
         TileBase[] floorTiles = floorTilemap.GetTilesBlock(bounds);
 
