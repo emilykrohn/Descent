@@ -17,6 +17,6 @@ MonoBehaviour:
   speed: 5
   xp: 0
   maxXp: 100
-  level: 1
+  level: 0
   currentEnemiesDefeated: 0
-  currentFloorNumber: 1
+  currentFloorNumber: 2

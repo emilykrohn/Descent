@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -46,8 +47,8 @@ public class PauseMenu : MonoBehaviour
 
     private void ReturnToMainMenu(ClickEvent evt)
     {
-        Debug.Log("Returning to Main Menu!");
-        CloseUI();
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
     }
 
     void Update()
