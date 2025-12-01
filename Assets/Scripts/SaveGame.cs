@@ -12,6 +12,7 @@ public class SaveGame : MonoBehaviour
     {
         playerStatsSave.SetHealth(playerStats.GetHealth());
         playerStatsSave.SetAttack(playerStats.GetAttack());
+        playerStatsSave.SetSpeed(playerStats.GetSpeed());
         playerStatsSave.SetXP(playerStats.GetXP());
         playerStatsSave.SetMaxXP(playerStats.GetMaxXP());
         playerStatsSave.SetLevel(playerStats.GetCurrentLevel());

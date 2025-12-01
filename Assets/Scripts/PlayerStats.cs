@@ -4,6 +4,7 @@ public class PlayerStats : MonoBehaviour
 {
     int health = 100;
     int attack = 3;
+    float speed = 5f;
     int xp = 0;
     int maxXp = 100;
     int level = 0;
@@ -38,6 +39,16 @@ public class PlayerStats : MonoBehaviour
     public void SetAttack(int newAttack)
     {
         attack = newAttack;
+    }
+
+    public float GetSpeed()
+    {
+        return speed;
+    }
+
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
     }
 
     public int GetXP()

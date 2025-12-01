@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class XP : MonoBehaviour
 {
-    int xp = 10;
+    int xp = 20;
     XpBar xpBar;
     private Vector3 direction;
     private Rigidbody2D rb;
@@ -36,7 +36,7 @@ public class XP : MonoBehaviour
 
     void Update()
     {
-        if (player == null)
+        if (player != null)
         {
             // Move towards the player
             Vector3 direction = (player.transform.position - transform.position).normalized;

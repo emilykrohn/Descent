@@ -168,6 +168,7 @@ public class PowerUpUI : MonoBehaviour
     private void SpeedPowerUp(ClickEvent evt)
     {
         playerMovement.SetSpeed(playerMovement.GetSpeed() + speedAmount);
+        playerStats.SetSpeed(playerMovement.GetSpeed());
 
         HideUI();
     }

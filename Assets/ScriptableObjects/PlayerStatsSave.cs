@@ -6,6 +6,7 @@ public class PlayerStatsSave : ScriptableObject
 {
     [SerializeField] private int health = 100;
     [SerializeField] private int attack = 3;
+    [SerializeField] private float speed = 5f;
     [SerializeField] private int xp = 0;
     [SerializeField] private int maxXp = 100;
     [SerializeField] private int level = 0;
@@ -21,6 +22,14 @@ public class PlayerStatsSave : ScriptableObject
     public void SetHealth(int newHealth)
     {
         health = newHealth;
+    }
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+    public float GetSpeed()
+    {
+        return speed;
     }
     public int GetAttack()
     {
