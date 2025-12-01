@@ -28,9 +28,12 @@ public class XP : MonoBehaviour
         {
             // Increase the player's xp
             PlayerStats playerStats = collision.GetComponent<PlayerStats>();
-            playerStats.SetXP(playerStats.GetXP() + xp);
-            xpBar.UpdateXp(xp);
-            Destroy(gameObject);
+            if (playerStats != null && xpBar != null)
+            {
+                playerStats.SetXP(playerStats.GetXP() + xp);
+                xpBar.UpdateXp(xp);
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -40,7 +43,10 @@ public class XP : MonoBehaviour
         {
             // Move towards the player
             Vector3 direction = (player.transform.position - transform.position).normalized;
-            rb.linearVelocity = new Vector2(direction.x, direction.y) * speed;
+            if (rb != null)
+            {
+                rb.linearVelocity = new Vector2(direction.x, direction.y) * speed;
+            }
         }
     }
 }

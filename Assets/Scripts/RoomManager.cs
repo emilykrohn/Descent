@@ -23,7 +23,10 @@ public class RoomManager : MonoBehaviour
         if (loadNewRoom)
         {
             PlayerStats playerStats = FindFirstObjectByType<PlayerStats>();
-            floorNumberText.text = "Floor: " + playerStats.GetCurrentFloorNumber();
+            if (playerStats != null)
+            {
+                floorNumberText.text = "Floor: " + playerStats.GetCurrentFloorNumber();
+            }
             StartNewRoom();
             loadNewRoom = false;
         }

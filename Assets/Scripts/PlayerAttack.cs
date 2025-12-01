@@ -34,7 +34,10 @@ public class PlayerAttack : MonoBehaviour
             {
                 timer = 0; //resets timer
                 attacking = false; //ends attacking state
-                attackArea.SetActive(attacking); //deactivates the attack area
+                if (attackArea != null)
+                {
+                    attackArea.SetActive(attacking); //deactivates the attack area
+                }
             }
         }
     }
@@ -42,6 +45,9 @@ public class PlayerAttack : MonoBehaviour
     private void Attack() //sets attack method to true
     {
         attacking = true;
-        attackArea.SetActive(attacking); //activates the attack area
+        if (attackArea != null)
+        {
+            attackArea.SetActive(attacking); //activates the attack area
+        }
     }
 }

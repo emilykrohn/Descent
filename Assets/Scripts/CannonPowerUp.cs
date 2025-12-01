@@ -28,13 +28,16 @@ public class CannonPowerUp : MonoBehaviour
     {
         // Use bullet prefab and make it larger for cannon power up
         GameObject newBullet = Instantiate(bullet, shootOrigin.position, Quaternion.identity);
-        newBullet.transform.localScale *= 3;
-        // Use physics to move the bullet
-        Rigidbody2D rb = newBullet.GetComponent<Rigidbody2D>();
-        rb.linearVelocity = shootDirection.normalized * bulletSpeed;
-        // Find the angle where the bullet will move towards
-        float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
-        newBullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        if (newBullet != null)
+        {
+            newBullet.transform.localScale *= 3;
+            // Use physics to move the bullet
+            Rigidbody2D rb = newBullet.GetComponent<Rigidbody2D>();
+            rb.linearVelocity = shootDirection.normalized * bulletSpeed;
+            // Find the angle where the bullet will move towards
+            float angle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
+            newBullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        }
     }
 
     public int GetAttackDamage()

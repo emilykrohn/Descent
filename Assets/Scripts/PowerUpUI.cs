@@ -56,17 +56,20 @@ public class PowerUpUI : MonoBehaviour
     {
         // Get the Power Up UI and hide it when the game is first run
         uiDoc = GetComponent<UIDocument>();
-        uiDoc.rootVisualElement.style.display = DisplayStyle.None;
+        if (uiDoc != null)
+        {
+            uiDoc.rootVisualElement.style.display = DisplayStyle.None;
 
-        // Find the Buttons from the UIDocument
-        buttonOne = uiDoc.rootVisualElement.Q("PowerUpOneButton") as Button;
-        buttonTwo = uiDoc.rootVisualElement.Q("PowerUpTwoButton") as Button;
-        buttonThree = uiDoc.rootVisualElement.Q("PowerUpThreeButton") as Button;
+            // Find the Buttons from the UIDocument
+            buttonOne = uiDoc.rootVisualElement.Q("PowerUpOneButton") as Button;
+            buttonTwo = uiDoc.rootVisualElement.Q("PowerUpTwoButton") as Button;
+            buttonThree = uiDoc.rootVisualElement.Q("PowerUpThreeButton") as Button;
 
-        // Find the Images from the UIDocument
-        imageOne = uiDoc.rootVisualElement.Q("PowerUpImageOne");
-        imageTwo = uiDoc.rootVisualElement.Q("PowerUpImageTwo");
-        imageThree = uiDoc.rootVisualElement.Q("PowerUpImageThree");
+            // Find the Images from the UIDocument
+            imageOne = uiDoc.rootVisualElement.Q("PowerUpImageOne");
+            imageTwo = uiDoc.rootVisualElement.Q("PowerUpImageTwo");
+            imageThree = uiDoc.rootVisualElement.Q("PowerUpImageThree");
+        }
     }
 
     private void LoadUI()
@@ -129,7 +132,10 @@ public class PowerUpUI : MonoBehaviour
         basicGunAttack.enabled = false;
         triShotAttack.enabled = false;
 
-        playerStats.SetAttack(cannonPowerUp.GetAttackDamage() + totalAttackIncrease);
+        if (playerStats != null)
+        {
+            playerStats.SetAttack(cannonPowerUp.GetAttackDamage() + totalAttackIncrease);
+        }
 
         HideUI();
     }
@@ -141,7 +147,10 @@ public class PowerUpUI : MonoBehaviour
         triShotAttack.enabled = false;
         cannonPowerUp.enabled = false;
 
-        playerStats.SetAttack(basicGunAttack.GetAttackDamage() + totalAttackIncrease);
+        if (playerStats != null)
+        {
+            playerStats.SetAttack(basicGunAttack.GetAttackDamage() + totalAttackIncrease);
+        }
 
         HideUI();
     }
@@ -153,30 +162,42 @@ public class PowerUpUI : MonoBehaviour
         triShotAttack.enabled = true;
         cannonPowerUp.enabled = false;
 
-        playerStats.SetAttack(triShotAttack.GetAttackDamage() + totalAttackIncrease);
+        if (playerStats != null)
+        {
+            playerStats.SetAttack(triShotAttack.GetAttackDamage() + totalAttackIncrease);
+        }
 
         HideUI();
     }
 
     private void HealthPowerUp(ClickEvent evt)
     {
-        health.Heal(healthAmount);
+        if (health != null)
+        {
+            health.Heal(healthAmount);
+        }
 
         HideUI();
     }
 
     private void SpeedPowerUp(ClickEvent evt)
     {
-        playerMovement.SetSpeed(playerMovement.GetSpeed() + speedAmount);
-        playerStats.SetSpeed(playerMovement.GetSpeed());
+        if (playerMovement != null && playerStats != null)
+        {
+            playerMovement.SetSpeed(playerMovement.GetSpeed() + speedAmount);
+            playerStats.SetSpeed(playerMovement.GetSpeed());
+        }
 
         HideUI();
     }
 
     private void AttackPowerUp(ClickEvent evt)
     {
-        playerStats.SetAttack(playerStats.GetAttack() + attackDamageAmountIncrease);
-        totalAttackIncrease += attackDamageAmountIncrease;
+        if (playerStats != null)
+        {
+            playerStats.SetAttack(playerStats.GetAttack() + attackDamageAmountIncrease);
+            totalAttackIncrease += attackDamageAmountIncrease;
+        }
         
         HideUI();
     }
@@ -185,7 +206,10 @@ public class PowerUpUI : MonoBehaviour
     {
         // Hide UI after button is pressed
         UnregisterCallbacks();
-        uiDoc.rootVisualElement.style.display = DisplayStyle.None;
+        if (uiDoc != null)
+        {
+            uiDoc.rootVisualElement.style.display = DisplayStyle.None;
+        }
         isUiOpen = false;
         Time.timeScale = 1f;
     }
@@ -194,7 +218,10 @@ public class PowerUpUI : MonoBehaviour
     {
         if (!isUiOpen)
         {
-            uiDoc.rootVisualElement.style.display = DisplayStyle.Flex;
+            if (uiDoc != null)
+            {
+                uiDoc.rootVisualElement.style.display = DisplayStyle.Flex;
+            }
             isUiOpen = true;
             Time.timeScale = 0f;
             LoadUI();

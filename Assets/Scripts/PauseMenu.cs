@@ -12,12 +12,15 @@ public class PauseMenu : MonoBehaviour
     {
         // Get the Power Up UI and hide it when the game is first run
         uiDoc = GetComponent<UIDocument>();
-        uiDoc.rootVisualElement.style.display = DisplayStyle.None;
+        if (uiDoc != null)
+        {
+            uiDoc.rootVisualElement.style.display = DisplayStyle.None;
 
-        // Find the Buttons from the UIDocument
-        buttonOne = uiDoc.rootVisualElement.Q("ResumeButton") as Button;
-        buttonTwo = uiDoc.rootVisualElement.Q("SaveButton") as Button;
-        buttonThree = uiDoc.rootVisualElement.Q("MainMenuButton") as Button;
+            // Find the Buttons from the UIDocument
+            buttonOne = uiDoc.rootVisualElement.Q("ResumeButton") as Button;
+            buttonTwo = uiDoc.rootVisualElement.Q("SaveButton") as Button;
+            buttonThree = uiDoc.rootVisualElement.Q("MainMenuButton") as Button;
+        }
 
         buttonOne.RegisterCallback<ClickEvent>(ResumeGame);
         buttonTwo.RegisterCallback<ClickEvent>(SaveGame);
@@ -32,7 +35,10 @@ public class PauseMenu : MonoBehaviour
     private void SaveGame(ClickEvent evt)
     {
         SaveGame saveGame = FindFirstObjectByType<SaveGame>();
-        saveGame.Save();
+        if (saveGame != null)
+        {
+            saveGame.Save();
+        }
         CloseUI();
     }
 
@@ -47,7 +53,7 @@ public class PauseMenu : MonoBehaviour
         // Escape key opens and closes the pause menu
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (uiDoc.rootVisualElement.style.display == DisplayStyle.None)
+            if (uiDoc != null && uiDoc.rootVisualElement.style.display == DisplayStyle.None)
             {
                 OpenUI();
             }
@@ -61,14 +67,20 @@ public class PauseMenu : MonoBehaviour
     private void OpenUI()
     {
         // Show the pause menu UI and pause the game
-        uiDoc.rootVisualElement.style.display = DisplayStyle.Flex;
-        Time.timeScale = 0f;
+        if (uiDoc != null)
+        {
+            uiDoc.rootVisualElement.style.display = DisplayStyle.Flex;
+            Time.timeScale = 0f;
+        }
     }
 
     private void CloseUI()
     {
-        // Hide the pause menu UI and unpause the game
-        uiDoc.rootVisualElement.style.display = DisplayStyle.None;
-        Time.timeScale = 1f;
+        if (uiDoc != null)
+        {
+            // Hide the pause menu UI and unpause the game
+            uiDoc.rootVisualElement.style.display = DisplayStyle.None;
+            Time.timeScale = 1f;
+        }
     }
 }

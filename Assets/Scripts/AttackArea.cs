@@ -12,7 +12,10 @@ public class AttackArea : MonoBehaviour
     private void Start()
     {
         playerStats = FindFirstObjectByType<PlayerStats>();
-        damage = playerStats.GetAttack();
+        if (playerStats != null)
+        {
+            damage = playerStats.GetAttack();
+        }
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -36,7 +39,10 @@ public class AttackArea : MonoBehaviour
         if(collider.gameObject.tag == "Enemy") //if they have a health component attached to them
         {
             Health health = collider.GetComponent<Health>();
-            health.Damage(damage); // they will take damage
+            if (health != null)
+            {
+                health.Damage(damage); // they will take damage
+            }
         }
     }
 

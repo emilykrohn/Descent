@@ -14,13 +14,16 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
-        playerStatsSave.SetHealth(health);
-        playerStatsSave.SetAttack(attack);
-        playerStatsSave.SetXP(xp);
-        playerStatsSave.SetMaxXP(maxXp);
-        playerStatsSave.SetLevel(level);
-        playerStatsSave.SetCurrentEnemiesDefeated(currentEnemiesDefeated);
-        playerStatsSave.SetCurrentFloorNumber(currentFloorNumber);
+        if (playerStatsSave != null)
+        {
+            playerStatsSave.SetHealth(health);
+            playerStatsSave.SetAttack(attack);
+            playerStatsSave.SetXP(xp);
+            playerStatsSave.SetMaxXP(maxXp);
+            playerStatsSave.SetLevel(level);
+            playerStatsSave.SetCurrentEnemiesDefeated(currentEnemiesDefeated);
+            playerStatsSave.SetCurrentFloorNumber(currentFloorNumber);
+        }
     }
 
     public int GetHealth()
