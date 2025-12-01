@@ -24,6 +24,9 @@ public class HealthBar : MonoBehaviour
     private void UpdateHealthBar()
     {
         float optimalFillAmount = currHealth / maxHealth;
-        healthBarFill.fillAmount = optimalFillAmount;
+        if (healthBarFill != null)
+        {
+            healthBarFill.fillAmount = optimalFillAmount;
+        }
     }
 }

@@ -56,7 +56,10 @@ public class Health : MonoBehaviour
         {
             playerHealthBar.UpdateHealth(-amount);
             playerStats = FindFirstObjectByType<PlayerStats>();
-            playerStats.SetHealth(health);
+            if (playerStats != null)
+            {
+                playerStats.SetHealth(health);
+            }
         }
 
         if(health <= 0 && !isDead) //if health drops below 0
@@ -98,16 +101,21 @@ public class Health : MonoBehaviour
         {
             PlayerStats playerStats = FindFirstObjectByType<PlayerStats>();
             EnemySpawner enemySpawner = FindFirstObjectByType<EnemySpawner>();
-            playerStats.SetCurrentEnemiesDefeated(playerStats.GetCurrentEnemiesDefeated() + 1);
-            Debug.Log("Enemies defeated: " + playerStats.GetCurrentEnemiesDefeated());
-            if (playerStats.GetCurrentEnemiesDefeated() == enemySpawner.GetTotalEnemiesSpawned())
+            if (playerStats != null)
             {
-                playerStats.SetCurrentEnemiesDefeated(0);
-                playerStats.SetCurrentFloorNumber(playerStats.GetCurrentFloorNumber() + 1);
-                RoomManager roomManager = FindFirstObjectByType<RoomManager>();
-                roomManager.LoadNewRoom();
+                playerStats.SetCurrentEnemiesDefeated(playerStats.GetCurrentEnemiesDefeated() + 1);
+                if (enemySpawner != null)
+                {
+                    if (playerStats.GetCurrentEnemiesDefeated() == enemySpawner.GetTotalEnemiesSpawned())
+                    {
+                        playerStats.SetCurrentEnemiesDefeated(0);
+                    }
+                }
             }
-            Instantiate(xp, transform.position, Quaternion.identity);
+            if (xp != null)
+            {
+                Instantiate(xp, transform.position, Quaternion.identity);
+            }
         }
         Destroy(gameObject); //removes game object from scene
     }

@@ -4,6 +4,7 @@ public class PlayerStats : MonoBehaviour
 {
     int health = 100;
     int attack = 3;
+    float speed = 5f;
     int xp = 0;
     int maxXp = 100;
     int level = 0;
@@ -13,13 +14,16 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
-        playerStatsSave.SetHealth(health);
-        playerStatsSave.SetAttack(attack);
-        playerStatsSave.SetXP(xp);
-        playerStatsSave.SetMaxXP(maxXp);
-        playerStatsSave.SetLevel(level);
-        playerStatsSave.SetCurrentEnemiesDefeated(currentEnemiesDefeated);
-        playerStatsSave.SetCurrentFloorNumber(currentFloorNumber);
+        if (playerStatsSave != null)
+        {
+            playerStatsSave.SetHealth(health);
+            playerStatsSave.SetAttack(attack);
+            playerStatsSave.SetXP(xp);
+            playerStatsSave.SetMaxXP(maxXp);
+            playerStatsSave.SetLevel(level);
+            playerStatsSave.SetCurrentEnemiesDefeated(currentEnemiesDefeated);
+            playerStatsSave.SetCurrentFloorNumber(currentFloorNumber);
+        }
     }
 
     public int GetHealth()
@@ -38,6 +42,16 @@ public class PlayerStats : MonoBehaviour
     public void SetAttack(int newAttack)
     {
         attack = newAttack;
+    }
+
+    public float GetSpeed()
+    {
+        return speed;
+    }
+
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
     }
 
     public int GetXP()

@@ -23,8 +23,6 @@ public class EnemyMovement : MonoBehaviour
         {
             Vector3 direct = (victim.position - transform.position).normalized; // Initialize Vector3 direction
             movDirect = direct; // To make Enemy face the target (Player) while moving
-
-
         }
     }
 
@@ -33,8 +31,10 @@ public class EnemyMovement : MonoBehaviour
     {
         if (victim)
         {
-            rb.linearVelocity = new Vector2(movDirect.x, movDirect.y) * speed; // Initializes velocity of Enemy when chasing Player
-
+            if (rb != null)
+            {
+                rb.linearVelocity = new Vector2(movDirect.x, movDirect.y) * speed; // Initializes velocity of Enemy when chasing Player
+            }
         }
     }
 

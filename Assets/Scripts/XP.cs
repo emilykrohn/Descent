@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class XP : MonoBehaviour
 {
-    int xp = 10;
+    int xp = 20;
     XpBar xpBar;
     private Vector3 direction;
     private Rigidbody2D rb;
@@ -28,16 +28,25 @@ public class XP : MonoBehaviour
         {
             // Increase the player's xp
             PlayerStats playerStats = collision.GetComponent<PlayerStats>();
-            playerStats.SetXP(playerStats.GetXP() + xp);
-            xpBar.UpdateXp(xp);
-            Destroy(gameObject);
+            if (playerStats != null && xpBar != null)
+            {
+                playerStats.SetXP(playerStats.GetXP() + xp);
+                xpBar.UpdateXp(xp);
+                Destroy(gameObject);
+            }
         }
     }
 
     void Update()
     {
-        // Move towards the player
-        Vector3 direction = (player.transform.position - transform.position).normalized;
-        rb.linearVelocity = new Vector2(direction.x, direction.y) * speed;
+        if (player != null)
+        {
+            // Move towards the player
+            Vector3 direction = (player.transform.position - transform.position).normalized;
+            if (rb != null)
+            {
+                rb.linearVelocity = new Vector2(direction.x, direction.y) * speed;
+            }
+        }
     }
 }

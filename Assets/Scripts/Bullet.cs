@@ -10,7 +10,10 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         PlayerStats playerStats = FindFirstObjectByType<PlayerStats>();
-        damage = playerStats.GetAttack();
+        if (playerStats != null)
+        {
+            damage = playerStats.GetAttack();
+        }
     }
 
     void Update()
@@ -27,7 +30,10 @@ public class Bullet : MonoBehaviour
         if(collider.gameObject.tag == "Enemy")
         {
             Health health = collider.GetComponent<Health>();
-            health.Damage(damage);
+            if (health != null)
+            {
+                health.Damage(damage);
+            }
             Destroy(gameObject);
         }
     }

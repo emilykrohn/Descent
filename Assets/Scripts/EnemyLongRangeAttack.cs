@@ -42,6 +42,9 @@ public class Enemy_LongRangeAttack : MonoBehaviour
     
     void repShoot() // This function instantiates an arrow according to its position and angle
     {
-        Instantiate(arrow, arrowPos.position, Quaternion.identity); // Represents arrow by position and angle
+        if (arrow != null && arrowPos != null)
+        {
+            Instantiate(arrow, arrowPos.position, Quaternion.identity); // Represents arrow by position and angle
+        }
     }
 }

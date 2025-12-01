@@ -85,6 +85,9 @@ public class EnemyMeleeAttack : MonoBehaviour
     {
         attacking = true;
         activeTimer = 0f;
-        attackArea.SetActive(true); // AttackArea.cs will apply damage to anything with Health
+        if (attackArea != null)
+        {
+            attackArea.SetActive(true); // AttackArea.cs will apply damage to anything with Health
+        }
     }
 }
