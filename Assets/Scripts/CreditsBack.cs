@@ -1,10 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Requirement #
-public class ControlsBack : MonoBehaviour
+public class CreditsBack : MonoBehaviour
 {
-    public void OnControlsBack()
+  public void OnCreditsBack()
     {
         SceneManager.LoadScene(0);
     }
