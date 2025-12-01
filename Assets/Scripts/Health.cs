@@ -53,7 +53,10 @@ public class Health : MonoBehaviour
         {
             playerHealthBar.UpdateHealth(-amount);
             playerStats = FindFirstObjectByType<PlayerStats>();
-            playerStats.SetHealth(health);
+            if (playerStats != null)
+            {
+                playerStats.SetHealth(health);
+            }
         }
 
         if(health <= 0) //if health drops below 0
@@ -107,7 +110,10 @@ public class Health : MonoBehaviour
                     }
                 }
             }
-            Instantiate(xp, transform.position, Quaternion.identity);
+            if (xp != null)
+            {
+                Instantiate(xp, transform.position, Quaternion.identity);
+            }
         }
         Destroy(gameObject); //removes game object from scene
     }

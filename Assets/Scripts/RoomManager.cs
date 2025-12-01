@@ -14,7 +14,10 @@ public class RoomManager : MonoBehaviour
 
     void Start()
     {
-        playerSpawn = player.GetComponent<PlayerSpawn>();
+        if (player != null)
+        {
+            playerSpawn = player.GetComponent<PlayerSpawn>();
+        }
     }
 
     void Update()
@@ -23,7 +26,7 @@ public class RoomManager : MonoBehaviour
         if (loadNewRoom)
         {
             PlayerStats playerStats = FindFirstObjectByType<PlayerStats>();
-            if (playerStats != null)
+            if (playerStats != null && floorNumberText != null)
             {
                 floorNumberText.text = "Floor: " + playerStats.GetCurrentFloorNumber();
             }
@@ -40,8 +43,17 @@ public class RoomManager : MonoBehaviour
     void StartNewRoom()
     {
         // Makes sure player spawns in after room is generated so it can avoid spawning in a wall
-        Vector3 playerSpawnPosition = roomGeneration.CreateRoom();
-        playerSpawn.Spawn(playerSpawnPosition);
-        enemySpawner.Spawn();
+        if (roomGeneration != null)
+        {
+            Vector3 playerSpawnPosition = roomGeneration.CreateRoom();
+            if (playerSpawn != null)
+            {
+                playerSpawn.Spawn(playerSpawnPosition);
+            }
+            if (enemySpawner != null)
+            {
+                enemySpawner.Spawn();
+            }
+        }
     }
 }

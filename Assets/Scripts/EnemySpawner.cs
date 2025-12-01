@@ -26,29 +26,32 @@ public class EnemySpawner : MonoBehaviour
             totalEnemiesSpawned += increaseEnemyCount;
         }
 
-        BoundsInt bounds = floorTilemap.cellBounds;
-        TileBase[] floorTiles = floorTilemap.GetTilesBlock(bounds);
-
-        while (currentEnemiesSpawned < totalEnemiesSpawned)
+        if (floorTilemap != null || enemy != null)
         {
-            // Get random spawn location within the floor tile map bounds
-            Vector3 spawnLocation = new Vector3(Random.Range(bounds.x, bounds.xMax), Random.Range(bounds.y, bounds.yMax), 0);
-            // Makes sure that a different enemy isn't already at that location
-            if (!spawnedLocationList.Contains(spawnLocation))
+            BoundsInt bounds = floorTilemap.cellBounds;
+            TileBase[] floorTiles = floorTilemap.GetTilesBlock(bounds);
+
+            while (currentEnemiesSpawned < totalEnemiesSpawned)
             {
-                TileBase tile = floorTiles[(int)spawnLocation.x + (int)spawnLocation.y];
-                // Makes sure that the tile exists in the floor tilemap
-                if (tile)
+                // Get random spawn location within the floor tile map bounds
+                Vector3 spawnLocation = new Vector3(Random.Range(bounds.x, bounds.xMax), Random.Range(bounds.y, bounds.yMax), 0);
+                // Makes sure that a different enemy isn't already at that location
+                if (!spawnedLocationList.Contains(spawnLocation))
                 {
-                    // Spawn the enemy at the location
-                    Instantiate(enemy, new Vector3(spawnLocation.x, spawnLocation.y, 0), Quaternion.identity);
-                    currentEnemiesSpawned++;
-                    spawnedLocationList.Add(spawnLocation);
+                    TileBase tile = floorTiles[(int)spawnLocation.x + (int)spawnLocation.y];
+                    // Makes sure that the tile exists in the floor tilemap
+                    if (tile)
+                    {
+                        // Spawn the enemy at the location
+                        Instantiate(enemy, new Vector3(spawnLocation.x, spawnLocation.y, 0), Quaternion.identity);
+                        currentEnemiesSpawned++;
+                        spawnedLocationList.Add(spawnLocation);
+                    }
                 }
             }
+            currentEnemiesSpawned = 0;
+            spawnedLocationList.Clear();
         }
-        currentEnemiesSpawned = 0;
-        spawnedLocationList.Clear();
     }
 
     public int GetTotalEnemiesSpawned()

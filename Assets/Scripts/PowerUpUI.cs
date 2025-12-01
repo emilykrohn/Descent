@@ -25,7 +25,7 @@ public class PowerUpUI : MonoBehaviour
     private VisualElement imageThree;
     
     List<string> functionOrderList = new List<string>();
-    List<Button> buttons;
+    List<Button> buttons = new List<Button>();
 
     private Health health;
     [SerializeField] private int healthAmount = 10;
@@ -88,8 +88,16 @@ public class PowerUpUI : MonoBehaviour
         };
 
         // Create lists for buttons and images that will be used for loops
-        buttons = new List<Button> { buttonOne, buttonTwo, buttonThree };
-        List<VisualElement> images = new List<VisualElement> { imageOne, imageTwo, imageThree };
+        if (buttonOne != null && buttonTwo != null && buttonThree != null)
+        {
+            buttons = new List<Button> { buttonOne, buttonTwo, buttonThree };
+        }
+
+        List<VisualElement> images = new List<VisualElement>();
+        if (imageOne != null && imageTwo != null && imageThree != null)
+        {
+            images = new List<VisualElement> { imageOne, imageTwo, imageThree };
+        }
 
         // Loop through the buttons and assign them a random power-up from the dictionary
         for (int i = 0; i < buttons.Count; i++)
@@ -99,30 +107,51 @@ public class PowerUpUI : MonoBehaviour
             buttons[i].text = powerUpName;
             if (powerUpName == "Health")
             {
-                buttons[i].RegisterCallback<ClickEvent>(HealthPowerUp);
+                if (buttons[i] != null)
+                {
+                    buttons[i].RegisterCallback<ClickEvent>(HealthPowerUp);
+                }
             }
             else if (powerUpName == "Speed")
             {
-                buttons[i].RegisterCallback<ClickEvent>(SpeedPowerUp);
+                if (buttons[i] != null)
+                {
+                    buttons[i].RegisterCallback<ClickEvent>(SpeedPowerUp);
+                }
             }
             else if (powerUpName == "Attack")
             {
-                buttons[i].RegisterCallback<ClickEvent>(AttackPowerUp);
+                if (buttons[i] != null)
+                {
+                    buttons[i].RegisterCallback<ClickEvent>(AttackPowerUp);
+                }
             }
             else if (powerUpName == "Basic Gun")
             {
-                buttons[i].RegisterCallback<ClickEvent>(BasicGunPowerUp);
+                if (buttons[i] != null)
+                {
+                    buttons[i].RegisterCallback<ClickEvent>(BasicGunPowerUp);
+                }
             }
             else if (powerUpName == "Tri-Shot Gun")
             {
-                buttons[i].RegisterCallback<ClickEvent>(TriShotGunPowerUp);
+                if (buttons[i] != null)
+                {
+                    buttons[i].RegisterCallback<ClickEvent>(TriShotGunPowerUp);
+                }
             }
             else if (powerUpName == "Cannon")
             {
-                buttons[i].RegisterCallback<ClickEvent>(CannonPowerUp);
+                if (buttons[i] != null)
+                {
+                    buttons[i].RegisterCallback<ClickEvent>(CannonPowerUp);
+                }
             }
             functionOrderList.Add(powerUpName);
-            images[i].style.backgroundImage = new StyleBackground(powerUpDictionary[powerUpName]);
+            if (images.Any())
+            {
+                images[i].style.backgroundImage = new StyleBackground(powerUpDictionary[powerUpName]);
+            }
             powerUpDictionary.Remove(powerUpName);
         }
     }
@@ -237,14 +266,17 @@ public class PowerUpUI : MonoBehaviour
 
     private void UnregisterCallbacks()
     {
-        for (int i = 0; i < buttons.Count; i++)
+        if (buttons.Any())
         {
-            buttons[i].UnregisterCallback<ClickEvent>(HealthPowerUp);
-            buttons[i].UnregisterCallback<ClickEvent>(SpeedPowerUp);
-            buttons[i].UnregisterCallback<ClickEvent>(AttackPowerUp);
-            buttons[i].UnregisterCallback<ClickEvent>(BasicGunPowerUp);
-            buttons[i].UnregisterCallback<ClickEvent>(TriShotGunPowerUp);
-            buttons[i].UnregisterCallback<ClickEvent>(CannonPowerUp);
+            for (int i = 0; i < buttons.Count; i++)
+            {
+                buttons[i].UnregisterCallback<ClickEvent>(HealthPowerUp);
+                buttons[i].UnregisterCallback<ClickEvent>(SpeedPowerUp);
+                buttons[i].UnregisterCallback<ClickEvent>(AttackPowerUp);
+                buttons[i].UnregisterCallback<ClickEvent>(BasicGunPowerUp);
+                buttons[i].UnregisterCallback<ClickEvent>(TriShotGunPowerUp);
+                buttons[i].UnregisterCallback<ClickEvent>(CannonPowerUp);
+            }
         }
     }
 }

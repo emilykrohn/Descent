@@ -7,7 +7,7 @@ public class XpBar : MonoBehaviour
 {
     private int startingMaxXp = 100;
     private int maxXp = 100;
-    private int currXp;
+    private int currXp = 0;
     private int currLevel = 0;
     private PlayerStats playerStats;
     [SerializeField] private Image xpBarFill;
@@ -41,7 +41,10 @@ public class XpBar : MonoBehaviour
                 maxXp = startingMaxXp + (int)Math.Pow(currLevel, 1.8);
                 playerStats.SetMaxXP(maxXp);
                 // Update the xp text
-                xpText.text = "XP Level: " + currLevel;
+                if (xpText != null)
+                {
+                    xpText.text = "XP Level: " + currLevel;
+                }
                 PowerUpUI powerUpUI = FindFirstObjectByType<PowerUpUI>();
                 if (powerUpUI != null)
                 {
@@ -51,6 +54,9 @@ public class XpBar : MonoBehaviour
         }
         // Update the fill amount of the xp bar
         float newFillAmount = (float)currXp / maxXp;
-        xpBarFill.fillAmount = newFillAmount;
+        if (xpBarFill != null)
+        {
+            xpBarFill.fillAmount = newFillAmount;
+        }
     }
 }

@@ -24,19 +24,20 @@ public class EnemyArrowScript : MonoBehaviour
 
         if(user != null)
         {
+            Vector3 direction = user.transform.position - transform.position; // Creates a direction directly towards the user
+            if (rb != null)
+            {
+                rb.linearVelocity = new Vector2(direction.x, direction.y).normalized * speed;
+            }
+            // Direction of arrow stays the same with a controlled speed whenever it goes towards the user
 
-        Vector3 direction = user.transform.position - transform.position; // Creates a direction directly towards the user
-        rb.linearVelocity = new Vector2(direction.x, direction.y).normalized * speed;
-        // Direction of arrow stays the same with a controlled speed whenever it goes towards the user
-
-
-        // Gives and angle converted from radians to degrees
-        float rotation = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
-        
-        
-        // Makes arrow shoot at a correct angle towards the Player from z-axis
-        transform.rotation = Quaternion.Euler(0, 0, rotation + -90); 
-        // -90 degrees since it makes arrow prefab visually and correctly point towards the user
+            // Gives and angle converted from radians to degrees
+            float rotation = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
+            
+            
+            // Makes arrow shoot at a correct angle towards the Player from z-axis
+            transform.rotation = Quaternion.Euler(0, 0, rotation + -90); 
+            // -90 degrees since it makes arrow prefab visually and correctly point towards the user
         }
     
     }

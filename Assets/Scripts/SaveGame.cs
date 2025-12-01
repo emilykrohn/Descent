@@ -10,7 +10,7 @@ public class SaveGame : MonoBehaviour
     }
     public void Save()
     {
-        if (playerStats != null)
+        if (playerStats != null && playerStatsSave != null)
         {
             playerStatsSave.SetHealth(playerStats.GetHealth());
             playerStatsSave.SetAttack(playerStats.GetAttack());

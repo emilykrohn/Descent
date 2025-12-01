@@ -24,9 +24,12 @@ public class RoomGeneration : MonoBehaviour
 
         while (!isValidMap)
         {
-            // If the previous map was not valid, clear all tiles and generate a new map
-            roomFloor.ClearAllTiles();
-            roomWalls.ClearAllTiles();
+            if (roomFloor != null && roomWalls != null)
+            {    
+                // If the previous map was not valid, clear all tiles and generate a new map
+                roomFloor.ClearAllTiles();
+                roomWalls.ClearAllTiles();
+            }
 
             // The offsets make the perlin noise return random values every time this script is run
             float xOffset = Random.Range(0f, 100f);
@@ -53,11 +56,17 @@ public class RoomGeneration : MonoBehaviour
                     // Set the tile to the current position and tile type to the room
                     if (tileIndex == 0)
                     {
-                        roomFloor.SetTile(position, tiles[tileIndex]);
+                        if (roomFloor != null)
+                        {
+                            roomFloor.SetTile(position, tiles[tileIndex]);
+                        }
                     }
                     else if (tileIndex == 1)
                     {
-                        roomWalls.SetTile(position, tiles[tileIndex]);
+                        if (roomWalls != null)
+                        {
+                            roomWalls.SetTile(position, tiles[tileIndex]);
+                        }
                     }
                 }
             }
@@ -126,10 +135,13 @@ public class RoomGeneration : MonoBehaviour
         {
             Vector3 adjacentTile = current + direction;
             // Converts to the tilemap coordinate system
-            Vector3Int tilePosition = roomFloor.WorldToCell(adjacentTile);
-            if (roomFloor.HasTile(tilePosition))
+            if (roomFloor != null)
             {
-                adjacentList.Add(adjacentTile);
+                Vector3Int tilePosition = roomFloor.WorldToCell(adjacentTile);
+                if (roomFloor.HasTile(tilePosition))
+                {
+                    adjacentList.Add(adjacentTile);
+                }
             }
         }
 

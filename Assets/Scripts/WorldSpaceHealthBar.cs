@@ -9,10 +9,9 @@ public class WorldSpaceHealthBar : MonoBehaviour
 
     public void UpdateHealthBar(float currentValue, float maxValue)
     {
-        slider.value = currentValue / maxValue;
+        if (slider != null)
+        {
+            slider.value = currentValue / maxValue;
+        }
     }
-    // Update is called once per frame
-    void Update()
-    {
-     }
 }

@@ -21,10 +21,12 @@ public class PauseMenu : MonoBehaviour
             buttonTwo = uiDoc.rootVisualElement.Q("SaveButton") as Button;
             buttonThree = uiDoc.rootVisualElement.Q("MainMenuButton") as Button;
         }
-
-        buttonOne.RegisterCallback<ClickEvent>(ResumeGame);
-        buttonTwo.RegisterCallback<ClickEvent>(SaveGame);
-        buttonThree.RegisterCallback<ClickEvent>(ReturnToMainMenu);
+        if (buttonOne != null && buttonTwo != null && buttonThree != null)
+        {
+            buttonOne.RegisterCallback<ClickEvent>(ResumeGame);
+            buttonTwo.RegisterCallback<ClickEvent>(SaveGame);
+            buttonThree.RegisterCallback<ClickEvent>(ReturnToMainMenu);
+        }
     }
 
     private void ResumeGame(ClickEvent evt)
