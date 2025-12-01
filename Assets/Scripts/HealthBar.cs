@@ -20,6 +20,12 @@ public class HealthBar : MonoBehaviour
         currHealth += amount;
         UpdateHealthBar();
     }
+
+    public void SetHealth(float newHealth)
+    {
+        currHealth = newHealth;
+        UpdateHealthBar();
+    }
    
     private void UpdateHealthBar()
     {

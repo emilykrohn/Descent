@@ -59,4 +59,22 @@ public class XpBar : MonoBehaviour
             xpBarFill.fillAmount = newFillAmount;
         }
     }
+
+    public void SetXp(int newXp)
+    {
+        currXp = newXp;
+        // Update the fill amount of the xp bar
+        float newFillAmount = (float)currXp / maxXp;
+        if (xpBarFill != null)
+        {
+            xpBarFill.fillAmount = newFillAmount;
+        }
+        if (playerStats != null)
+        {
+            if (xpText != null)
+            {
+                xpText.text = "XP Level: " + playerStats.GetCurrentLevel();;
+            }
+        }
+    }
 }

@@ -11,20 +11,8 @@ public class PlayerStats : MonoBehaviour
     int currentEnemiesDefeated = 0;
     int currentFloorNumber = 1;
     [SerializeField] private PlayerStatsSave playerStatsSave;
-
-    void Start()
-    {
-        if (playerStatsSave != null)
-        {
-            playerStatsSave.SetHealth(health);
-            playerStatsSave.SetAttack(attack);
-            playerStatsSave.SetXP(xp);
-            playerStatsSave.SetMaxXP(maxXp);
-            playerStatsSave.SetLevel(level);
-            playerStatsSave.SetCurrentEnemiesDefeated(currentEnemiesDefeated);
-            playerStatsSave.SetCurrentFloorNumber(currentFloorNumber);
-        }
-    }
+    private XpBar xpBar;
+    private HealthBar healthBar;
 
     public int GetHealth()
     {
@@ -33,6 +21,10 @@ public class PlayerStats : MonoBehaviour
     public void SetHealth(int newHealth)
     {
         health = newHealth;
+        if (healthBar != null)
+        {
+            healthBar.SetHealth(health);
+        }
     }
 
     public int GetAttack()

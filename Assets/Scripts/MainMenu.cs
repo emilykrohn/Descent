@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    PlayerStats playerStats;
+    [SerializeField] PlayerStatsSave playerStatsSave;
+
     public void PlayGame()
     {
         SceneManager.LoadSceneAsync(1);
@@ -18,5 +21,21 @@ public class MainMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+    public void Load()
+    {
+        playerStats = FindFirstObjectByType<PlayerStats>();
+        if (playerStats != null && playerStatsSave != null)
+        {
+            playerStats.SetHealth(playerStatsSave.GetHealth());
+            playerStats.SetAttack(playerStatsSave.GetAttack());
+            playerStats.SetSpeed(playerStatsSave.GetSpeed());
+            playerStats.SetXP(playerStatsSave.GetXP());
+            playerStats.SetMaxXP(playerStatsSave.GetMaxXP());
+            playerStats.SetCurrentLevel(playerStatsSave.GetLevel());
+            playerStats.SetCurrentEnemiesDefeated(playerStatsSave.GetCurrentEnemiesDefeated());
+            playerStats.SetCurrentFloorNumber(playerStatsSave.GetCurrentFloorNumber());
+        }
+        PlayGame();
     }
 }
