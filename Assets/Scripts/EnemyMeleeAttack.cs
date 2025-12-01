@@ -1,6 +1,6 @@
-//Requirement #9
 using UnityEngine;
 
+//Requirement #9
 public class EnemyMeleeAttack : MonoBehaviour
 {
     [Header("Targets")]

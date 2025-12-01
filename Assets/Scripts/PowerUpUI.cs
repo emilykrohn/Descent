@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-// Requirement #17
+// Requirement #15 and #17
 public class PowerUpUI : MonoBehaviour
 {
     [SerializeField] private Texture2D healthPowerUpImage;

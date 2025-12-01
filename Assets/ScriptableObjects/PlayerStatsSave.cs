@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
+// Requirement #2
 [CreateAssetMenu(fileName = "PlayerStatsSave", menuName = "Scriptable Objects/PlayerStatsSave")]
 public class PlayerStatsSave : ScriptableObject
 {

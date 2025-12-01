@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Requirement #2
 public class PlayerStats : MonoBehaviour
 {
     int health = 100;

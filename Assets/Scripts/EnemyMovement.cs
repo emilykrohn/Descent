@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//Requirement #9
 public class EnemyMovement : MonoBehaviour
 {
     public float speed = 2f; // Default speed of Enemy

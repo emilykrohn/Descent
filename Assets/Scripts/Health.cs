@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+// Requirement 13
 public class Health : MonoBehaviour
 {
     [SerializeField] private int health = 100;

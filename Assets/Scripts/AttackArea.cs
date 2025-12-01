@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Requirement 6
 public class AttackArea : MonoBehaviour
 {
     private int damage = 3; // using 3 as an example

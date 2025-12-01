@@ -1,8 +1,8 @@
-//Requirement # 6
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Requirement # 6
 public class PlayerAttack : MonoBehaviour
 {
     private GameObject attackArea = default; //the area where the attack happens

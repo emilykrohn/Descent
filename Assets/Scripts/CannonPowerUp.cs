@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// Requirement #17
+// Requirement #7
 public class CannonPowerUp : MonoBehaviour
 {
     [SerializeField] GameObject bullet;

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Requirement 9
 public class EnemyArrowScript : MonoBehaviour
 {
     // 9. When the user's character gets in range of an enemy, they will attack.

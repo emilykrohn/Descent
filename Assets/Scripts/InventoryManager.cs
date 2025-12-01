@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Requirement #4
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance; //public access

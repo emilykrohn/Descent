@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
+// Requirement 19
 public class GameManagerScript : MonoBehaviour
 {
     public GameObject gameOverUI;

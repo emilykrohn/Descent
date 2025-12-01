@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Requirement #4
 [System.Serializable]
 public class Item
 {
