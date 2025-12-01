@@ -264,7 +264,7 @@ MonoBehaviour:
 
     D = Right
 
-    Space = Attack
+    SPACEBAR = Attack
 
     Esc
     = Pause Menu'
