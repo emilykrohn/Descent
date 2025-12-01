@@ -4,7 +4,8 @@ public class EnemyMovement : MonoBehaviour
 {
     public float speed = 2f; // Default speed of Enemy
     Rigidbody2D rb; // Sets a Rigidbody for physics (Gravity = 0)
-    Transform victim; // Sets target variable whenever Player moves
+    GameObject victim; // Sets target variable whenever Player moves
+    Transform victimTransform;
     Vector2 movDirect; // When enemy moves direction
 
     private void Awake()
@@ -14,14 +15,18 @@ public class EnemyMovement : MonoBehaviour
 
     void Start()
     {
-        victim = GameObject.Find("Player").transform; // Confirms Player as the Enemy's target when Player moves everytime
+        victim = GameObject.Find("Player");
+        if (victim)
+        {
+            victimTransform = victim.transform; // Confirms Player as the Enemy's target when Player moves everytime
+        }
     }
 
     void Update()
     {
         if (victim)
         {
-            Vector3 direct = (victim.position - transform.position).normalized; // Initialize Vector3 direction
+            Vector3 direct = (victimTransform.position - transform.position).normalized; // Initialize Vector3 direction
             movDirect = direct; // To make Enemy face the target (Player) while moving
         }
     }

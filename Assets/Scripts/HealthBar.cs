@@ -9,9 +9,14 @@ public class HealthBar : MonoBehaviour
    private float maxHealth = 100;
    private float currHealth;
    [SerializeField] private Image healthBarFill;
+   private PlayerStats playerStats;
     void Start()
     {
-        currHealth = maxHealth;
+        playerStats = FindFirstObjectByType<PlayerStats>();
+        if (playerStats != null)
+        {
+            SetHealth(playerStats.GetHealth());
+        }
     }
 
 

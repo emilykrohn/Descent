@@ -10,9 +10,11 @@ public class PlayerStats : MonoBehaviour
     int level = 0;
     int currentEnemiesDefeated = 0;
     int currentFloorNumber = 1;
-    [SerializeField] private PlayerStatsSave playerStatsSave;
-    private XpBar xpBar;
-    private HealthBar healthBar;
+
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     public int GetHealth()
     {
@@ -21,10 +23,6 @@ public class PlayerStats : MonoBehaviour
     public void SetHealth(int newHealth)
     {
         health = newHealth;
-        if (healthBar != null)
-        {
-            healthBar.SetHealth(health);
-        }
     }
 
     public int GetAttack()

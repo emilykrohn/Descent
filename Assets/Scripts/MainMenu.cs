@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    PlayerStats playerStats;
     [SerializeField] PlayerStatsSave playerStatsSave;
+    PlayerStats playerStats;
 
     public void PlayGame()
     {
