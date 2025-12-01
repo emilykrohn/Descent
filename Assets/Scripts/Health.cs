@@ -11,6 +11,9 @@ public class Health : MonoBehaviour
     [SerializeField] GameObject xp;
     PlayerStats playerStats;
 
+    private bool isDead;
+    public GameManagerScript gameManager;
+
     private void Start()
     {
         health = maxHealth;
@@ -59,8 +62,10 @@ public class Health : MonoBehaviour
             }
         }
 
-        if(health <= 0) //if health drops below 0
+        if(health <= 0 && !isDead) //if health drops below 0
         {
+            isDead = true;
+            gameManager.gameOver();
             Die(); //calls Die method
         }
 
