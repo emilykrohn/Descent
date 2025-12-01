@@ -40,6 +40,7 @@ public class PowerUpUI : MonoBehaviour
     private TriShotAttack triShotAttack;
     private CannonPowerUp cannonPowerUp;
     private PlayerStats playerStats;
+    private HealthBar playerHealthBar;
 
     void Start()
     {
@@ -50,6 +51,7 @@ public class PowerUpUI : MonoBehaviour
         basicGunAttack = FindFirstObjectByType<BaseLongRangeAttack>();
         triShotAttack = FindFirstObjectByType<TriShotAttack>();
         cannonPowerUp = FindFirstObjectByType<CannonPowerUp>();
+        playerHealthBar = FindFirstObjectByType<HealthBar>();
     }
 
     void OnEnable()
@@ -175,6 +177,11 @@ public class PowerUpUI : MonoBehaviour
         if (health != null)
         {
             health.Heal(healthAmount);
+        }
+        if (playerStats != null && playerHealthBar != null)
+        {
+            playerStats.SetHealth(healthAmount);
+            playerHealthBar.UpdateHealth(healthAmount);
         }
 
         HideUI();
