@@ -30,7 +30,7 @@ public class RoomManager : MonoBehaviour
             if (playerStats != null && floorNumberText != null)
             {
                 playerStats.SetCurrentFloorNumber(playerStats.GetCurrentFloorNumber() + 1);
-                floorNumberText.text = "Floor: " + playerStats.GetCurrentFloorNumber();
+                floorNumberText.text = "Floor: " + (playerStats.GetCurrentFloorNumber() - 1).ToString();
             }
             StartNewRoom();
         }
