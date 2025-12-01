@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
         spriterenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Update()
+    private void Update() // Updates and enables the Attack animation whenever "space" is pressed
     {
         if(Input.GetButtonDown("Attack"))
         {
