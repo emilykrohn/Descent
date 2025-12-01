@@ -253,7 +253,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &161840323
@@ -467,7 +467,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &236287282
@@ -977,7 +977,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &519420028
@@ -1067,7 +1067,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.597102, y: 6.0011897, z: -10}
+  m_LocalPosition: {x: 10.229222, y: 6.0011897, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3166,6 +3166,7 @@ MonoBehaviour:
   enemy: {fileID: 5617428827186942255, guid: f4ef4d7620a1b3a4fa054dbc50865304, type: 3}
   floorTilemap: {fileID: 1617153511}
   totalEnemiesSpawned: 5
+  increaseEnemyCount: 2
 --- !u!4 &1979634303
 Transform:
   m_ObjectHideFlags: 0
@@ -3678,6 +3679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e8c7774c0f44ede83772847a4da590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
+  animateAttack: {fileID: 2069699444}
 --- !u!114 &2069699440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3895,7 +3897,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1660057539 &9223372036854775807

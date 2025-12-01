@@ -12,6 +12,9 @@ public class PlayerAttack : MonoBehaviour
     private float timeToAttack = 0.25f; //duration of the attack
     private float timer = 0f; //timer to keep track how long the attack has been active
 
+    public Animator animateAttack;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -42,12 +45,18 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private void Attack() //sets attack method to true
+    public void Attack() //sets attack method to true
     {
         attacking = true;
         if (attackArea != null)
         {
             attackArea.SetActive(attacking); //activates the attack area
+            animateAttack.SetBool("isAttack", true);
         }
+    }
+
+    public void FinishAttack()
+    {
+        animateAttack.SetBool("isAttack", false);
     }
 }
