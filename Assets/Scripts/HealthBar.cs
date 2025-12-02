@@ -15,8 +15,8 @@ public class HealthBar : MonoBehaviour
         playerStats = FindFirstObjectByType<PlayerStats>(); // Obtains player stats (health) from PlayerStats.cs
         if (playerStats != null)
         {
+            maxHealth = playerStats.GetMaxHealth(); // Gets player's maximum health from playerStats
             SetHealth(playerStats.GetHealth()); // Gets player's starting health from playerStats
-            maxHealth = playerStats.GetHealth();
         }
     }
 
