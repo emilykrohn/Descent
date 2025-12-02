@@ -3,7 +3,7 @@ using UnityEngine;
 // Requirement #2
 public class PlayerStats : MonoBehaviour
 {
-    int health = 100;
+    int health = 500;
     int attack = 3;
     float speed = 5f;
     int xp = 0;
@@ -14,7 +14,7 @@ public class PlayerStats : MonoBehaviour
 
     public void ResetStats()
     {
-        health = 100;
+        health = 500;
         attack = 3;
         speed = 5f;
         xp = 0;

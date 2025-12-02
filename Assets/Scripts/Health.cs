@@ -17,7 +17,12 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
-        health = maxHealth;
+        playerStats = FindFirstObjectByType<PlayerStats>();
+        if (playerStats != null)
+        {
+            health = playerStats.GetHealth();
+            maxHealth = playerStats.GetHealth();
+        }
         // Initialize the health bar at the start
         if (healthBar != null)
         {

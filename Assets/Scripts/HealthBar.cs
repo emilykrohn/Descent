@@ -16,6 +16,7 @@ public class HealthBar : MonoBehaviour
         if (playerStats != null)
         {
             SetHealth(playerStats.GetHealth());
+            maxHealth = playerStats.GetHealth();
         }
     }
 
