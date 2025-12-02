@@ -11,6 +11,11 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        playerStats = FindFirstObjectByType<PlayerStats>();
+        if (playerStats != null)
+        {
+            playerStats.ResetStats();
+        }
         SceneManager.LoadSceneAsync(1);
     }
 
@@ -42,6 +47,6 @@ public class MainMenu : MonoBehaviour
             playerStats.SetCurrentEnemiesDefeated(playerStatsSave.GetCurrentEnemiesDefeated());
             playerStats.SetCurrentFloorNumber(playerStatsSave.GetCurrentFloorNumber());
         }
-        PlayGame();
+        SceneManager.LoadSceneAsync(1);
     }
 }

@@ -9,11 +9,13 @@ public class XP : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private float speed = 3f;
     private PlayerMovement player;
+    private PlayerStats playerStats;
 
     void Start()
     {
         player = FindFirstObjectByType<PlayerMovement>();
         xpBar = FindFirstObjectByType<XpBar>();
+        playerStats = FindFirstObjectByType<PlayerStats>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -28,7 +30,6 @@ public class XP : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             // Increase the player's xp
-            PlayerStats playerStats = collision.GetComponent<PlayerStats>();
             if (playerStats != null && xpBar != null)
             {
                 playerStats.SetXP(playerStats.GetXP() + xp);
