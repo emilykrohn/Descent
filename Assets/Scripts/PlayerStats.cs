@@ -3,7 +3,8 @@ using UnityEngine;
 // Requirement #2
 public class PlayerStats : MonoBehaviour
 {
-    int health = 100;
+    int health = 500;
+    int maxHealth = 500;
     int attack = 3;
     float speed = 5f;
     int xp = 0;
@@ -14,7 +15,8 @@ public class PlayerStats : MonoBehaviour
 
     public void ResetStats()
     {
-        health = 100;
+        health = 500;
+        maxHealth = 500;
         attack = 3;
         speed = 5f;
         xp = 0;
@@ -36,6 +38,15 @@ public class PlayerStats : MonoBehaviour
     public void SetHealth(int newHealth)
     {
         health = newHealth;
+    }
+
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
+    public void SetMaxHealth(int newMaxHealth)
+    {
+        maxHealth = newMaxHealth;
     }
 
     public int GetAttack()
