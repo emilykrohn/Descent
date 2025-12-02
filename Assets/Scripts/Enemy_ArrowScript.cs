@@ -1,12 +1,10 @@
 using UnityEngine;
 
-// Requirement 9
+ // 9. When the user's character gets in range of an enemy, they will attack.
+
+ // Script for Enemy's Arrows
 public class EnemyArrowScript : MonoBehaviour
 {
-    // 9. When the user's character gets in range of an enemy, they will attack.
-
-    // Script for Enemy's Arrows
-
     // Serialized Variables - To enable visibility in the Inspector
     
     [SerializeField] private float speed = 7f; // To control speed of the arrow in editor
