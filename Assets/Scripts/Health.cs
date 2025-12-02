@@ -18,7 +18,7 @@ public class Health : MonoBehaviour
     private void Start()
     {
         playerStats = FindFirstObjectByType<PlayerStats>();
-        if (playerStats != null)
+        if (playerStats != null && gameObject.tag == "Player")
         {
             health = playerStats.GetHealth();
             maxHealth = playerStats.GetHealth();
