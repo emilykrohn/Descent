@@ -12,6 +12,18 @@ public class PlayerStats : MonoBehaviour
     int currentEnemiesDefeated = 0;
     int currentFloorNumber = 1;
 
+    public void ResetStats()
+    {
+        health = 100;
+        attack = 3;
+        speed = 5f;
+        xp = 0;
+        maxXp = 100;
+        level = 0;
+        currentEnemiesDefeated = 0;
+        currentFloorNumber = 1;
+    }
+
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
