@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3027e04a314a52e419733605846724ec, type: 3}
   m_Name: PlayerStatsSave
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatsSave
-  health: 100
+  health: 500
   attack: 3
   speed: 5
   xp: 0
   maxXp: 100
   level: 0
   currentEnemiesDefeated: 0
-  currentFloorNumber: 2
+  currentFloorNumber: 1
