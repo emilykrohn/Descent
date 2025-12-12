@@ -528,14 +528,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
+  m_text: 'W = Up
 
     A = Left
 
+    S = Down
+
     D = Right
 
-    SPACEBAR = Attack, Mouse Cursor (to
-    aim at enemy)
+    SPACEBAR = Attack,
+    Mouse Cursor (to aim at enemy)
 
     Esc = Pause Menu'
   m_isRightToLeft: 0
